@@ -5,5 +5,8 @@
     <url>/2022/11/01/hello-world/</url>
     <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
 ]]></content>
+      <categories>
+        <category>🐟</category>
+      </categories>
   </entry>
 </search>
