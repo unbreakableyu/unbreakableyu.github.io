@@ -4,6 +4,8 @@
     <title>Markdown 教程</title>
     <url>/2022/11/01/Markdown-lernen/</url>
     <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。  </p>
+<span id="more"></span> 
+
 <blockquote>
 <p>这篇教程参考<br><br><a href="https://www.runoob.com/markdown/md-tutorial.html">菜鸟教程</a> : 这一篇非常友好，大好き！<br><br><a href="https://ark.theme.yueplus.ink/2020/04/15/markdown/">Yue_plus</a>  : 这一篇很酷！<br><br><a href="https://www.markdownguide.org/basic-syntax/">Basic Syntax</a> : 这一篇对比了Markdown与HTML格式，同时也有输出形式，较为推荐。<br><a href="https://pylog.gitee.io/2021/markdown/">Markdown 语法手册</a> : blog作者较为全面地整理了相关网页链接。</p>
 </blockquote>
