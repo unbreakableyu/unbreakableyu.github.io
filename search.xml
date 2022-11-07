@@ -1,30 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
+    <title>FAQ submit50</title>
+    <url>/2022/11/07/FAQ%20submit50/</url>
+    <content><![CDATA[<h1 id="Invalid-slug"><a href="#Invalid-slug" class="headerlink" title="Invalid slug"></a>Invalid slug</h1><br>
+
+<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
+<blockquote>
+<p>Invalid slug <br><br>Submission cancelled.</p>
+</blockquote>
+<p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
+<p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
+<p>帖子的评论区有如下对话：<br></p>
+<blockquote>
+<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?<br><br></p>
+</blockquote>
+<blockquote>
+<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently?<br><br></p>
+</blockquote>
+<p>注意，在两人的讨论中提到了：<br></p>
+<blockquote>
+<p><strong>add</strong> you to the new submission process<br><br></p>
+</blockquote>
+<blockquote>
+<p>Have you <strong>accepted the invitation</strong>?<br><br></p>
+</blockquote>
+<blockquote>
+<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.<br><br></p>
+</blockquote>
+<p>也就是说：<br></p>
+<p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
+<ol>
+<li>接受 <strong>课程邀请 invitation</strong> 。</li>
+<li>关联 <strong>github</strong> 与 <strong>edX</strong> 的账号。</li>
+<li>在 <strong>github</strong> 加入 <strong>CS50X 2022</strong> 的课程。</li>
+</ol>
+<p>而这些 <strong>关联</strong> 与 <strong>加入课程</strong> 都是在官网教程中的某一步时有操作过的，但是当时网络状况堪忧或者其他原因，导致 <strong>关联</strong> 步骤未能完成。<br></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li>在edX的 <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home">课程 | CS50</a> 页面顶端寻找授权链接，接受邀请并关联授权你的 <strong>github</strong> 账号。</li>
+<li>在 <strong>Problemset</strong> 进入 <strong>VS Code</strong> 时会有一个 <strong>Log in via Github</strong> 的按钮让你关联。</li>
+<li>在 <a href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
+</ol>
+<p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
+<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 __yes__，需要再检查一下就回答 __no__。</p>
 ]]></content>
       <categories>
-        <category>🐟</category>
+        <category>CS50x 2022</category>
       </categories>
       <tags>
-        <tag>hello_world</tag>
-        <tag>Guten_Tag</tag>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 L1</tag>
+        <tag>submit50</tag>
       </tags>
   </entry>
   <entry>
     <title>Markdown 教程</title>
     <url>/2022/11/01/Markdown-lernen/</url>
-    <content><![CDATA[<h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。  </p>
+    <content><![CDATA[<h1 id="概述-Overview"><a href="#概述-Overview" class="headerlink" title="概述 Overview"></a>概述 Overview</h1><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。  </p>
 <span id="more"></span> 
+<br>
 
 <blockquote>
-<p>这篇教程参考<br><br><a href="https://www.runoob.com/markdown/md-tutorial.html">菜鸟教程</a> : 这一篇非常友好，大好き！<br><br><a href="https://ark.theme.yueplus.ink/2020/04/15/markdown/">Yue_plus</a>  : 这一篇很酷！<br><br><a href="https://www.markdownguide.org/basic-syntax/">Basic Syntax</a> : 这一篇对比了Markdown与HTML格式，同时也有输出形式，较为推荐。<br><a href="https://pylog.gitee.io/2021/markdown/">Markdown 语法手册</a> : blog作者较为全面地整理了相关网页链接。</p>
+<p>这篇教程参考<br><br><a href="https://www.runoob.com/markdown/md-tutorial.html"><strong>菜鸟教程</strong></a> : 这一篇非常友好，大好き！<br><br><a href="https://ark.theme.yueplus.ink/2020/04/15/markdown/"><strong>Yue_plus</strong></a>  : 这一篇很酷！<br><br><a href="https://www.markdownguide.org/basic-syntax/"><strong>Basic Syntax</strong></a> : 这一篇对比了Markdown与HTML格式，同时也有输出形式，较为推荐。<br><br><a href="https://pylog.gitee.io/2021/markdown/"><strong>Markdown 语法手册</strong></a> : blog作者较为全面地整理了相关网页链接。</p>
 </blockquote>
 <br>
 
-<h1 id="我是一个标题-Headings"><a href="#我是一个标题-Headings" class="headerlink" title="我是一个标题 Headings"></a>我是一个标题 Headings</h1><p>👆这看着就像标题。他一般有两种形式</p>
+<h1 id="标题-Headings"><a href="#标题-Headings" class="headerlink" title="标题 Headings"></a>标题 Headings</h1><p>👆这看着就像标题。他一般有两种形式</p>
 <h2 id="使用-标题"><a href="#使用-标题" class="headerlink" title="使用#标题"></a>使用<code>#</code>标题</h2><p>使用 <code>#</code> 号可表示 1-6 级标题，一级标题对应一个 <code>#</code> 号，二级标题对应两个 <code>#</code> 号，以此类推。代码格式如下👇</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 一级标题摸🐟</span><br><span class="line">## 二级标题看🦊</span><br><span class="line">### 三级标题rua🐱</span><br></pre></td></tr></table></figure>
 
@@ -59,9 +102,14 @@
 <hr>
 <br>
 
-<h1 id="段落-Paragraphs"><a href="#段落-Paragraphs" class="headerlink" title="段落 Paragraphs"></a>段落 Paragraphs</h1><h2 id="段落换行-Line-Breaks"><a href="#段落换行-Line-Breaks" class="headerlink" title="段落换行 Line Breaks"></a>段落换行 Line Breaks</h2><p>没有特殊格式，直接输入文本就ok，<strong>段落换行是使用两个以上空格+回车</strong>   </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">momomo   </span><br><span class="line">🐟🐟🐟</span><br></pre></td></tr></table></figure>
-
+<h1 id="段落-Paragraphs"><a href="#段落-Paragraphs" class="headerlink" title="段落 Paragraphs"></a>段落 Paragraphs</h1><h2 id="段落换行-Line-Breaks"><a href="#段落换行-Line-Breaks" class="headerlink" title="段落换行 Line Breaks"></a>段落换行 Line Breaks</h2><p>没有特殊格式，直接输入文本就ok。</p>
+<p><strong>段落换行:</strong></p>
+<ol>
+<li><p>使用两个以上空格+回车；   </p>
+</li>
+<li><p>键入<code>&lt;br&gt;</code>完成换行操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">momomo   </span><br><span class="line">🐟🐟🐟</span><br></pre></td></tr></table></figure></li>
+</ol>
 <p>也可以段落后一个或以上的空行来表示重新开始新段落。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">momomo</span><br><span class="line"></span><br><span class="line">🐟🐟🐟</span><br></pre></td></tr></table></figure>
 
@@ -174,6 +222,8 @@
 <hr>
 <br>
 
+<h1 id="区块-Blockquote"><a href="#区块-Blockquote" class="headerlink" title="区块 Blockquote"></a>区块 Blockquote</h1><br>
+
 <h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><h2 id="表格内换行"><a href="#表格内换行" class="headerlink" title="表格内换行"></a>表格内换行</h2><p>使用html中的 <code>&lt;br&gt;</code> 或者是 <code>&lt;/p&gt;</code> 标签。</p>
 <p>[^🐟]: viel Spaß![^🐟]: viel Spaß!</p>
 ]]></content>
@@ -183,6 +233,19 @@
       <tags>
         <tag>lernen</tag>
         <tag>👋🐟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
+]]></content>
+      <categories>
+        <category>🐟</category>
+      </categories>
+      <tags>
+        <tag>hello_world</tag>
+        <tag>Guten_Tag</tag>
       </tags>
   </entry>
 </search>
