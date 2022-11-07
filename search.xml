@@ -3,32 +3,35 @@
   <entry>
     <title>FAQ submit50</title>
     <url>/2022/11/07/FAQ%20submit50/</url>
-    <content><![CDATA[<h1 id="Invalid-slug"><a href="#Invalid-slug" class="headerlink" title="Invalid slug"></a>Invalid slug</h1><br>
-
-<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
+    <content><![CDATA[<h1 id="Invalid-slug"><a href="#Invalid-slug" class="headerlink" title="Invalid slug"></a>Invalid slug</h1><h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
 <blockquote>
-<p>Invalid slug <br><br>Submission cancelled.</p>
+<p>Invalid slug </p>
 </blockquote>
+<blockquote>
+<p>Submission cancelled.</p>
+</blockquote>
+<span id="more"></span> 
+
 <p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
 <p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
 <h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
 <p>帖子的评论区有如下对话：<br></p>
 <blockquote>
-<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?<br><br></p>
+<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?</p>
 </blockquote>
 <blockquote>
-<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently?<br><br></p>
+<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently? </p>
 </blockquote>
 <p>注意，在两人的讨论中提到了：<br></p>
 <blockquote>
-<p><strong>add</strong> you to the new submission process<br><br></p>
+<p><strong>add</strong> you to the new submission process</p>
 </blockquote>
 <blockquote>
-<p>Have you <strong>accepted the invitation</strong>?<br><br></p>
+<p>Have you <strong>accepted the invitation</strong>?</p>
 </blockquote>
 <blockquote>
-<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.<br><br></p>
+<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.</p>
 </blockquote>
 <p>也就是说：<br></p>
 <p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
@@ -44,7 +47,7 @@
 <li>在 <a href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
 </ol>
 <p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
-<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 __yes__，需要再检查一下就回答 __no__。</p>
+<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 <strong>yes</strong> ，需要再检查一下就回答 <strong>no</strong> 。</p>
 ]]></content>
       <categories>
         <category>CS50x 2022</category>

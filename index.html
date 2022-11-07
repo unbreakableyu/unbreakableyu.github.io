@@ -185,7 +185,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 00:27:10" itemprop="dateModified" datetime="2022-11-08T00:27:10+08:00">2022-11-08</time>
+                <time title="修改时间：2022-11-08 00:52:31" itemprop="dateModified" datetime="2022-11-08T00:52:31+08:00">2022-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,49 +208,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Invalid-slug"><a href="#Invalid-slug" class="headerlink" title="Invalid slug"></a>Invalid slug</h1><br>
-
-<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
+          <h1 id="Invalid-slug"><a href="#Invalid-slug" class="headerlink" title="Invalid slug"></a>Invalid slug</h1><h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
 <blockquote>
-<p>Invalid slug <br><br>Submission cancelled.</p>
-</blockquote>
-<p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
-<p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
-<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a target="_blank" rel="noopener" href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
-<p>帖子的评论区有如下对话：<br></p>
-<blockquote>
-<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?<br><br></p>
+<p>Invalid slug </p>
 </blockquote>
 <blockquote>
-<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently?<br><br></p>
+<p>Submission cancelled.</p>
 </blockquote>
-<p>注意，在两人的讨论中提到了：<br></p>
-<blockquote>
-<p><strong>add</strong> you to the new submission process<br><br></p>
-</blockquote>
-<blockquote>
-<p>Have you <strong>accepted the invitation</strong>?<br><br></p>
-</blockquote>
-<blockquote>
-<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.<br><br></p>
-</blockquote>
-<p>也就是说：<br></p>
-<p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
-<ol>
-<li>接受 <strong>课程邀请 invitation</strong> 。</li>
-<li>关联 <strong>github</strong> 与 <strong>edX</strong> 的账号。</li>
-<li>在 <strong>github</strong> 加入 <strong>CS50X 2022</strong> 的课程。</li>
-</ol>
-<p>而这些 <strong>关联</strong> 与 <strong>加入课程</strong> 都是在官网教程中的某一步时有操作过的，但是当时网络状况堪忧或者其他原因，导致 <strong>关联</strong> 步骤未能完成。<br></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
-<li>在edX的 <a target="_blank" rel="noopener" href="https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home">课程 | CS50</a> 页面顶端寻找授权链接，接受邀请并关联授权你的 <strong>github</strong> 账号。</li>
-<li>在 <strong>Problemset</strong> 进入 <strong>VS Code</strong> 时会有一个 <strong>Log in via Github</strong> 的按钮让你关联。</li>
-<li>在 <a target="_blank" rel="noopener" href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
-</ol>
-<p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
-<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 __yes__，需要再检查一下就回答 __no__。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/07/FAQ%20submit50/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -300,7 +272,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 00:28:23" itemprop="dateModified" datetime="2022-11-08T00:28:23+08:00">2022-11-08</time>
+                <time title="修改时间：2022-11-08 00:52:28" itemprop="dateModified" datetime="2022-11-08T00:52:28+08:00">2022-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,10 +295,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Markdown 简要整理。</p>
+          <h1 id="概述-Overview"><a href="#概述-Overview" class="headerlink" title="概述 Overview"></a>概述 Overview</h1><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。  </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/11/01/Markdown-lernen/">
+              <a class="btn" href="/2022/11/01/Markdown-lernen/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
