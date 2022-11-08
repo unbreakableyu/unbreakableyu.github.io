@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/01/0%20hello-world/</url>
-    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
-]]></content>
-      <categories>
-        <category>🐟</category>
-      </categories>
-      <tags>
-        <tag>hello_world</tag>
-        <tag>Guten_Tag</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CS50 PSet1: Mario</title>
     <url>/2022/11/08/CS50-PSet1-Mario/</url>
     <content><![CDATA[<p>挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。<br></p>
@@ -21,7 +8,7 @@
 <span id="more"></span> 
 
 <p><strong>进入正题：</strong> <br><br>官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-more<br><br><a href="https://cs50.harvard.edu/x/2022/psets/1/mario/more/"><strong>Clickhere</strong></a></p>
-<h1 id="Mario’s-Pyramid"><a href="#Mario’s-Pyramid" class="headerlink" title="Mario’s Pyramid"></a><strong>Mario’s Pyramid</strong></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>#</code>表示砖块，通过与操作者交互生成一个1~8层的 __Pyramid__， 如下所示：<br></p>
+<h1 id="Mario’s-Pyramid"><a href="#Mario’s-Pyramid" class="headerlink" title="Mario’s Pyramid"></a><strong>Mario’s Pyramid</strong></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>#</code>表示砖块，通过与操作者交互生成一个1~8层的 <strong>Pyramid</strong> ， 如下所示：<br></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #</span><br><span class="line">  ##  ##</span><br><span class="line"> ###  ###</span><br><span class="line">####  ####</span><br></pre></td></tr></table></figure>
 
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把目标输出图样拆分成四个步骤完成，分别是：<br></p>
@@ -66,11 +53,24 @@
 <p><a href="https://www.houseninetytwo.com/week-1-cs50-pset1-solution/"><strong>[2018] cs50 Pset1: Mario solution</strong></a><br><br>这位的文章可以算一篇有趣日记。</p>
 ]]></content>
       <categories>
-        <category>CS50</category>
+        <category>CS50x 2022</category>
       </categories>
       <tags>
         <tag>CS50x 2022</tag>
         <tag>CS50x 2022 pset1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/01/0%20hello-world/</url>
+    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
+]]></content>
+      <categories>
+        <category>🐟</category>
+      </categories>
+      <tags>
+        <tag>hello_world</tag>
+        <tag>Guten_Tag</tag>
       </tags>
   </entry>
   <entry>
