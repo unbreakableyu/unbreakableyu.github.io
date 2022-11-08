@@ -14,56 +14,61 @@
       </tags>
   </entry>
   <entry>
-    <title>FAQ submit50</title>
-    <url>/2022/11/07/CS50L1%20FAQ%20submit50/</url>
-    <content><![CDATA[<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid slug&lt;br&gt; </span><br><span class="line">Submission cancelled.</span><br></pre></td></tr></table></figure>
-<span id="more"></span> 
+    <title>CS50 PSet1: Mario</title>
+    <url>/2022/11/08/CS50-PSet1-Mario/</url>
+    <content><![CDATA[<p>挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。<br></p>
+<p>提交作业之后开始搜索其他同学的解法，这个过程发现了两个有趣blog，具体链接附在文末的 <strong>小岛拜访</strong> 环节。<br></p>
+<p><strong>进入正题：</strong> <br><br>官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-more<br><br><a href="https://cs50.harvard.edu/x/2022/psets/1/mario/more/"><strong>Clickhere</strong></a></p>
+<h1 id="Mario’s-Pyramid"><a href="#Mario’s-Pyramid" class="headerlink" title="Mario’s Pyramid"></a><strong>Mario’s Pyramid</strong></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>#</code>表示砖块，通过与操作者交互生成一个1~8层的 __Pyramid__， 如下所示：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #</span><br><span class="line">  ##  ##</span><br><span class="line"> ###  ###</span><br><span class="line">####  ####</span><br></pre></td></tr></table></figure>
 
-<p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
-<p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
-<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
-<p>帖子的评论区有如下对话：<br></p>
-<blockquote>
-<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?</p>
-</blockquote>
-<blockquote>
-<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently? </p>
-</blockquote>
-<p>注意，在两人的讨论中提到了：<br></p>
-<blockquote>
-<p><strong>add</strong> you to the new submission process</p>
-</blockquote>
-<blockquote>
-<p>Have you <strong>accepted the invitation</strong>?</p>
-</blockquote>
-<blockquote>
-<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.</p>
-</blockquote>
-<p>也就是说：<br></p>
-<p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把目标输出图样拆分成四个步骤完成，分别是：<br></p>
 <ol>
-<li>接受 <strong>课程邀请 invitation</strong> 。</li>
-<li>关联 <strong>github</strong> 与 <strong>edX</strong> 的账号。</li>
-<li>在 <strong>github</strong> 加入 <strong>CS50X 2022</strong> 的课程。</li>
+<li>提示操作者输入高度并检测输入值是否在范围内。</li>
+<li><code>#</code>前面部分的空格。</li>
+<li>左右两侧的<code>#</code>及中间的空格。</li>
+<li>换行重复上述两步。<br></li>
 </ol>
-<p>而这些 <strong>关联</strong> 与 <strong>加入课程</strong> 都是在官网教程中的某一步时有操作过的，但是当时网络状况堪忧或者其他原因，导致 <strong>关联</strong> 步骤未能完成。<br></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
-<li>在edX的 <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home">课程 | CS50</a> 页面顶端寻找授权链接，接受邀请并关联授权你的 <strong>github</strong> 账号。</li>
-<li>在 <strong>Problemset</strong> 进入 <strong>VS Code</strong> 时会有一个 <strong>Log in via Github</strong> 的按钮让你关联。</li>
-<li>在 <a href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
-</ol>
-<p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
-<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 <strong>yes</strong> ，需要再检查一下就回答 <strong>no</strong> 。</p>
+<p>其中的核心思路我们用一个例子来分析。以高度为4的Pyramid为例：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #     Row0  blank-space: 3  #: 1</span><br><span class="line">  ##  ##    Row1  blank-space: 2  #: 2</span><br><span class="line"> ###  ###   Row2  blank-space: 1  #: 3</span><br><span class="line">####  ####  Row3  blank-space: 0  #: 4</span><br></pre></td></tr></table></figure>
+<p>找到规律：<br></p>
+<blockquote>
+<p>空格数量 &#x3D; 高度 - Row + 1<br><br><code>#</code>数量 &#x3D; Row + 1<br></p>
+</blockquote>
+<p>将上述两个规律分别用下述形式表达：<br></p>
+<p><strong>blank:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void blank(int i, int Height)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = Height - i; j &gt; 0; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        // blankspace before #</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>bricks:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void bricks(int i)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        // each row output #</span><br><span class="line">        printf(&quot;#&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="程序展示"><a href="#程序展示" class="headerlink" title="程序展示"></a>程序展示</h2><p>下面是我的代码全貌，Pseudocode随后附上。<br></p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码:"></a><strong>完整代码:</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">#define MIN 1</span><br><span class="line">#define MAX 8</span><br><span class="line"></span><br><span class="line">void bricks(int j);</span><br><span class="line">void blank(int i, int Height);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Please input Height from %i to %i\n&quot;, MIN, MAX);</span><br><span class="line">    int Height;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        Height = get_int(&quot;Height: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (Height &lt; MIN || Height &gt; MAX);</span><br><span class="line">    for (int i = 1; i &lt;= Height; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        // Pyramid each row: many dots, numbers of #, &quot; &quot;, numbers of #</span><br><span class="line">        blank(i, Height);</span><br><span class="line">        bricks(i);</span><br><span class="line">        printf(&quot;  &quot;);</span><br><span class="line">        bricks(i);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void bricks(int i)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        // each row output #</span><br><span class="line">        printf(&quot;#&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void blank(int i, int Height)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = Height - i; j &gt; 0; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        // blankspace before #</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode :"></a><strong>Pseudocode :</strong></h3><pre><code>1. Prompt Height
+2. Check range 1-8, if not go back to step1
+3. Iterate i, each row from 1 through Height
+    1. Print many &quot; &quot;
+        1. Iterate j, j = Height - i, j &gt; 0, j--
+    2. Print bricks&quot;#&quot;
+        1. Iterate j, j = 0, j &lt; i, j--
+    3. Print &quot; &quot;
+    4. back to step3-2
+    5. new line
+</code></pre>
+<br>
+
+<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a><strong>小岛拜访</strong></h1><p><a href="https://cs50.stackexchange.com/"><strong>官方CS50的论坛</strong></a><br><br>官网作业中的习题解析挺有意思的，建议 <strong>less</strong> 和 <strong>more</strong> 两个版本的 <strong>walkthrough</strong> 都看一下。<br></p>
+<p><a href="https://www.highapproach.com/cs50-mario-more/"><strong>CS50 PSet 1: Mario-more Solution</strong></a><br><br>这位的大致思路：分为 <strong>提示user输入高度</strong> 与 <strong>生成 # 砖块</strong> 两部分。<br></p>
+<p><a href="https://www.houseninetytwo.com/week-1-cs50-pset1-solution/"><strong>[2018] cs50 Pset1: Mario solution</strong></a><br><br>这位的文章可以算一篇有趣日记。</p>
 ]]></content>
       <categories>
-        <category>CS50x 2022</category>
+        <category>CS50</category>
       </categories>
       <tags>
         <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 L1</tag>
-        <tag>submit50</tag>
+        <tag>CS50x 2022 pset1</tag>
       </tags>
   </entry>
   <entry>
@@ -244,6 +249,59 @@
       <tags>
         <tag>lernen</tag>
         <tag>👋🐟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FAQ submit50</title>
+    <url>/2022/11/07/CS50L1%20FAQ%20submit50/</url>
+    <content><![CDATA[<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid slug </span><br><span class="line">Submission cancelled.</span><br></pre></td></tr></table></figure>
+<span id="more"></span> 
+
+<p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
+<p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
+<p>帖子的评论区有如下对话：<br></p>
+<blockquote>
+<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?</p>
+</blockquote>
+<blockquote>
+<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently? </p>
+</blockquote>
+<p>注意，在两人的讨论中提到了：<br></p>
+<blockquote>
+<p><strong>add</strong> you to the new submission process</p>
+</blockquote>
+<blockquote>
+<p>Have you <strong>accepted the invitation</strong>?</p>
+</blockquote>
+<blockquote>
+<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.</p>
+</blockquote>
+<p>也就是说：<br></p>
+<p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
+<ol>
+<li>接受 <strong>课程邀请 invitation</strong> 。</li>
+<li>关联 <strong>github</strong> 与 <strong>edX</strong> 的账号。</li>
+<li>在 <strong>github</strong> 加入 <strong>CS50X 2022</strong> 的课程。</li>
+</ol>
+<p>而这些 <strong>关联</strong> 与 <strong>加入课程</strong> 都是在官网教程中的某一步时有操作过的，但是当时网络状况堪忧或者其他原因，导致 <strong>关联</strong> 步骤未能完成。<br></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li>在edX的 <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home">课程 | CS50</a> 页面顶端寻找授权链接，接受邀请并关联授权你的 <strong>github</strong> 账号。</li>
+<li>在 <strong>Problemset</strong> 进入 <strong>VS Code</strong> 时会有一个 <strong>Log in via Github</strong> 的按钮让你关联。</li>
+<li>在 <a href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
+</ol>
+<p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
+<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 <strong>yes</strong> ，需要再检查一下就回答 <strong>no</strong> 。</p>
+]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 L1</tag>
+        <tag>submit50</tag>
       </tags>
   </entry>
 </search>

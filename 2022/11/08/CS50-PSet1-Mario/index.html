@@ -20,31 +20,34 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="stay hungry, stay foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="🐟のblog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。 提交作业之后开始搜索其他同学的解法，这个过程发现了两个有趣blog，具体链接附在文末的 小岛拜访 环节。 进入正题： 官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-moreClickhere Mario’s Pyramid问题描述使用#表示砖块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50 PSet1: Mario">
+<meta property="og:url" content="http://example.com/2022/11/08/CS50-PSet1-Mario/index.html">
 <meta property="og:site_name" content="🐟のblog">
-<meta property="og:description" content="stay hungry, stay foolish">
+<meta property="og:description" content="挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。 提交作业之后开始搜索其他同学的解法，这个过程发现了两个有趣blog，具体链接附在文末的 小岛拜访 环节。 进入正题： 官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-moreClickhere Mario’s Pyramid问题描述使用#表示砖块">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T06:13:29.000Z">
+<meta property="article:modified_time" content="2022-11-08T10:03:55.616Z">
 <meta property="article:author" content="unbreakableyu">
-<meta property="article:tag" content="nonsense">
+<meta property="article:tag" content="CS50x 2022">
+<meta property="article:tag" content="CS50x 2022 pset1">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/11/08/CS50-PSet1-Mario/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>🐟のblog</title>
+  <title>CS50 PSet1: Mario | 🐟のblog</title>
   
 
 
@@ -148,9 +151,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -166,10 +170,9 @@
       <meta itemprop="name" content="🐟のblog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/08/CS50-PSet1-Mario/" class="post-title-link" itemprop="url">CS50 PSet1: Mario</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          CS50 PSet1: Mario
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -202,7 +205,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。<br></p>
+        <p>挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。<br></p>
 <p>提交作业之后开始搜索其他同学的解法，这个过程发现了两个有趣blog，具体链接附在文末的 <strong>小岛拜访</strong> 环节。<br></p>
 <p><strong>进入正题：</strong> <br><br>官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-more<br><br><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2022/psets/1/mario/more/"><strong>Clickhere</strong></a></p>
 <h1 id="Mario’s-Pyramid"><a href="#Mario’s-Pyramid" class="headerlink" title="Mario’s Pyramid"></a><strong>Mario’s Pyramid</strong></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>#</code>表示砖块，通过与操作者交互生成一个1~8层的 __Pyramid__， 如下所示：<br></p>
@@ -249,265 +252,34 @@
 <p><a target="_blank" rel="noopener" href="https://www.highapproach.com/cs50-mario-more/"><strong>CS50 PSet 1: Mario-more Solution</strong></a><br><br>这位的大致思路：分为 <strong>提示user输入高度</strong> 与 <strong>生成 # 砖块</strong> 两部分。<br></p>
 <p><a target="_blank" rel="noopener" href="https://www.houseninetytwo.com/week-1-cs50-pset1-solution/"><strong>[2018] cs50 Pset1: Mario solution</strong></a><br><br>这位的文章可以算一篇有趣日记。</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/CS50x-2022/" rel="tag"># CS50x 2022</a>
+              <a href="/tags/CS50x-2022-pset1/" rel="tag"># CS50x 2022 pset1</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/07/CS50L1%20FAQ%20submit50/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="unbreakableyu">
-      <meta itemprop="description" content="stay hungry, stay foolish">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🐟のblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/07/CS50L1%20FAQ%20submit50/" class="post-title-link" itemprop="url">FAQ submit50</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-07 23:25:51" itemprop="dateCreated datePublished" datetime="2022-11-07T23:25:51+08:00">2022-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 08:04:35" itemprop="dateModified" datetime="2022-11-08T08:04:35+08:00">2022-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CS50x-2022/" itemprop="url" rel="index"><span itemprop="name">CS50x 2022</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Invalid slug </span><br><span class="line">Submission cancelled.</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/07/CS50L1%20FAQ%20submit50/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/01/Markdown-lernen/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="unbreakableyu">
-      <meta itemprop="description" content="stay hungry, stay foolish">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🐟のblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/01/Markdown-lernen/" class="post-title-link" itemprop="url">Markdown 教程(未完结)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-01 19:55:34" itemprop="dateCreated datePublished" datetime="2022-11-01T19:55:34+08:00">2022-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-08 00:52:28" itemprop="dateModified" datetime="2022-11-08T00:52:28+08:00">2022-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="概述-Overview"><a href="#概述-Overview" class="headerlink" title="概述 Overview"></a>概述 Overview</h1><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。  </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/01/Markdown-lernen/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/07/CS50L1%20FAQ%20submit50/" rel="prev" title="FAQ submit50">
+      <i class="fa fa-chevron-left"></i> FAQ submit50
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/01/0%20hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="unbreakableyu">
-      <meta itemprop="description" content="stay hungry, stay foolish">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="🐟のblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/01/0%20hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-01 15:00:06" itemprop="dateCreated datePublished" datetime="2022-11-01T15:00:06+08:00">2022-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-05 18:06:43" itemprop="dateModified" datetime="2022-11-05T18:06:43+08:00">2022-11-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%F0%9F%90%9F/" itemprop="url" rel="index"><span itemprop="name">🐟</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>say hello :)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/01/0%20hello-world/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -560,6 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mario%E2%80%99s-Pyramid"><span class="nav-number">1.</span> <span class="nav-text">Mario’s Pyramid</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%B1%95%E7%A4%BA"><span class="nav-number">1.3.</span> <span class="nav-text">程序展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.1.</span> <span class="nav-text">完整代码:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pseudocode"><span class="nav-number">1.3.2.</span> <span class="nav-text">Pseudocode :</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E5%B2%9B%E6%8B%9C%E8%AE%BF"><span class="nav-number">2.</span> <span class="nav-text">小岛拜访</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
