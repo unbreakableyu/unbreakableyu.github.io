@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="题目要求Clickhere 概述：根据一段文本来判断该文本对应的阅读水平。 其中用到公式：index &#x3D; 0.0588 * L - 0.296 * S - 15.8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS50-Pset2-Readability">
+<meta property="og:url" content="http://example.com/2022/11/15/CS50-Pset2-Readability/index.html">
+<meta property="og:site_name" content="🐟のblog">
+<meta property="og:description" content="题目要求Clickhere 概述：根据一段文本来判断该文本对应的阅读水平。 其中用到公式：index &#x3D; 0.0588 * L - 0.296 * S - 15.8">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-15T06:46:41.000Z">
+<meta property="article:modified_time" content="2022-11-15T14:01:05.497Z">
+<meta property="article:author" content="unbreakableyu">
+<meta property="article:tag" content="CS50x 2022">
+<meta property="article:tag" content="CS50x 2022 pset2">
+<meta property="article:tag" content="for循环">
+<meta property="article:tag" content="四舍五入">
+<meta property="article:tag" content="运算顺序">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/15/CS50-Pset2-Readability/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CS50-Pset2-Readability | 🐟のblog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">🐟のblog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">unbreakableyu</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/15/CS50-Pset2-Readability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="unbreakableyu">
+      <meta itemprop="description" content="stay hungry, stay foolish">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🐟のblog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS50-Pset2-Readability
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-15 14:46:41 / 修改时间：22:01:05" itemprop="dateCreated datePublished" datetime="2022-11-15T14:46:41+08:00">2022-11-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS50x-2022/" itemprop="url" rel="index"><span itemprop="name">CS50x 2022</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a target="_blank" rel="noopener" href="https://cs50.harvard.edu/x/2022/psets/2/readability/#readability"><strong>Clickhere</strong></a><br></p>
+<p>概述：根据一段文本来判断该文本对应的阅读水平。<br></p>
+<p>其中用到公式：<br><br>index &#x3D; 0.0588 * L - 0.296 * S - 15.8<br></p>
+<span id="more"></span> 
+
+<p>计算其中的L(letters per 100 words)，S(sentences per 100 words)以及w(words)，代入公式求出index。<br></p>
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a><strong>Function</strong></h2><p>在该问题中将求 <strong>letters</strong> , <strong>sentences</strong> 以及 <strong>words</strong> 用单独的 <strong>function</strong> 表示。<br></p>
+<h3 id="1-Function-Declarations"><a href="#1-Function-Declarations" class="headerlink" title="1 Function Declarations"></a><strong>1 Function Declarations</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return-type name(argument-list);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Function-Definitions"><a href="#2-Function-Definitions" class="headerlink" title="2 Function Definitions"></a><strong>2 Function Definitions</strong><br></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">return-type name(argument-list)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Function-Calls"><a href="#3-Function-Calls" class="headerlink" title="3 Function Calls"></a><strong>3 Function Calls</strong><br></h3><h3 id="4-Function-Miscellany"><a href="#4-Function-Miscellany" class="headerlink" title="4 Function Miscellany"></a><strong>4 Function Miscellany</strong><br></h3><h2 id="Rounded-to-The-Nearest-Integer-四舍五入"><a href="#Rounded-to-The-Nearest-Integer-四舍五入" class="headerlink" title="Rounded to The Nearest Integer (四舍五入)"></a><strong>Rounded to The Nearest Integer</strong> (四舍五入)</h2><p>根据数据的精度，选择在原计算结果上<code>+ 0.5</code>, <code>+ 0.05</code>以此类推，本题目中如下展示：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float g = (0.0588 * l - 0.296 * s) * 100 / w - 15.8;</span><br><span class="line">int index = 0.5 + g;</span><br></pre></td></tr></table></figure>
+
+<h2 id="String-is-Array"><a href="#String-is-Array" class="headerlink" title="String is Array"></a><strong>String is Array</strong></h2><p>本题目中依旧用到了和 <strong>Lab 2</strong> 一样的部分，通过判断比较字符串里的每一个元素，以达到目的。<br></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="计算顺序的改变导致不同结果"><a href="#计算顺序的改变导致不同结果" class="headerlink" title="计算顺序的改变导致不同结果"></a>计算顺序的改变导致不同结果</h2><p>起初在<code>index</code>计算结果的基础上<code>+ 0.5</code>，即</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int index = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br></pre></td></tr></table></figure>
+
+<p>的确能够使原来的计算结果<code>4.5557</code>，<code>int index = 4</code>，达到预期结果<code>Grade 5</code> 。<br></p>
+<p>但使用<code>check50</code>检查的时候发现有一种情况不合格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:( handles single sentence with multiple words</span><br><span class="line">    expected &quot;Grade 7\n&quot;, not &quot;Grade 8\n&quot;</span><br></pre></td></tr></table></figure>
+
+<p>以下为对应测试的文本(Grade 7)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In my younger and more vulnerable years my father gave me some advice that I&#x27;ve been turning over in my mind ever since.(Grade 7)</span><br><span class="line">words: 23</span><br><span class="line">letters: 96</span><br><span class="line">sentences: 1</span><br><span class="line">Grade 8</span><br></pre></td></tr></table></figure>
+
+<p>起初认为是四舍五入的精度问题，于是将式子中的<code>0.5</code>更改为<code>0.05</code>甚至<code>0.005</code>，不仅之前的错误未能修改，还出现了更多的”文本等级不符合应有的等级”情况。<br></p>
+<p>经过检查，发现是运算顺序的不一致导致了不同的结果。以下使测试代码及输出结果：<br><br><strong>测试代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float a = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br><span class="line">float b = 0.5 + 0.0588 * l * 100 / w - 0.296 * s * 100 / w - 15.8;</span><br><span class="line"></span><br><span class="line">int c = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br><span class="line">int d = 0.5 + 0.0588 * l * 100 / w - 0.296 * s * 100 / w - 15.8;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出结果</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a: 8.035600, b: 7.955652, c: 8, d:7</span><br></pre></td></tr></table></figure>
+
+<p>于是根据测试结果将对应部分修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int index = 0.5 + (0.0588 * l - 0.296 * s) * 100 / w - 15.8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="for循环的"><a href="#for循环的" class="headerlink" title="for循环的{}"></a>for循环的{}</h2><p>初始版本的 <strong>for循环</strong> 漏掉<code>&#123;&#125;</code>，但程序依然通过编译，且通过了<code>check50</code>的测试，直到使用<code>style50</code>才发现了这个错误。<br></p>
+<p><strong>错误版本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>猜测是因为只有 <strong>一个</strong> if语句，所以编译时默认该if语句是在for循环里的，为了验证猜测正确与否，随后增加一个语句，修改完之后如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;l: %i&quot;, letters);</span><br></pre></td></tr></table></figure>
+
+<p>这样就无法通过编译，出现如下报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">readability.c:7:9: error: misleading indentation; statement is not part of the previous &#x27;for&#x27; [-Werror,-Wmisleading-indentation]</span><br><span class="line">        printf(&quot;l: %i&quot;, letters);</span><br><span class="line">        ^</span><br><span class="line">readability.c:1:5: note: previous statement is here</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    ^</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，我将if语句部分取消缩进，修改为下述形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line"></span><br><span class="line">if (isupper(text[i]) || islower(text[i]))</span><br><span class="line">&#123;</span><br><span class="line">    letters++;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;l: %i&quot;, letters);</span><br></pre></td></tr></table></figure>
+<p>却意外发现能通过编译，且结果依然正确。<br></p>
+<p>按照测试结果来看：<br></p>
+<ol>
+<li>如果使用for循环却忘记用<code>&#123;&#125;</code>框住循环的内容，会默认随后第一句为循环内容，随后的第二句就不在循环内了。</li>
+<li>如果后面循环内容都缩进1个<code>Tab</code>，则会在编译时出现报错。<br></li>
+</ol>
+<p>具体原因我也不太懂，暂时没能在中文网络上检索到相关信息，感觉像是游戏里的精英怪保护机制一样，保护粗心的人忘记在for循环后面加<code>&#123;&#125;</code>，神奇！或许学到以后就懂了？</p>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int count_letters(string text);</span><br><span class="line">int count_words(string text);</span><br><span class="line">int count_sentences(string text);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Prompt user to input</span><br><span class="line">    string text = get_string(&quot;Text: &quot;);</span><br><span class="line"></span><br><span class="line">    // get the l, s and w</span><br><span class="line">    // index = 0.0588 * L - 0.296 * S - 15.8</span><br><span class="line">    int w = count_words(text);</span><br><span class="line">    int l = count_letters(text);</span><br><span class="line">    int s = count_sentences(text);</span><br><span class="line"></span><br><span class="line">    // 0.5 is used to round the result</span><br><span class="line">    int index = 0.5 + (0.0588 * l - 0.296 * s) * 100 / w  - 15.8;</span><br><span class="line"></span><br><span class="line">    // Grade</span><br><span class="line">    if (index &lt; 1)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Before Grade 1\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (index &gt; 16)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Grade 16+\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Grade %i\n&quot;, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_letters(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count letters</span><br><span class="line">    int letters = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(text[i]) || islower(text[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            letters++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;letters: %i\n&quot;, letters);</span><br><span class="line">    return letters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_words(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count words</span><br><span class="line">    int words;</span><br><span class="line">    int spaces = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (text[i] == &#x27; &#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            spaces++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    words = spaces + 1;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;words: %i\n&quot;, words);</span><br><span class="line">    return words;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_sentences(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count sentences</span><br><span class="line">    int sentences = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (text[i] == &#x27;.&#x27; || text[i] == &#x27;!&#x27; || text[i] == &#x27;?&#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            sentences++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;sentences: %i\n&quot;, sentences);</span><br><span class="line">    return sentences;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a><strong>小岛拜访</strong></h1><p><a target="_blank" rel="noopener" href="https://manual.cs50.io/">CS50 Manual Pages</a>：查询不同的库函数及作用。<br></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CS50x-2022/" rel="tag"># CS50x 2022</a>
+              <a href="/tags/CS50x-2022-pset2/" rel="tag"># CS50x 2022 pset2</a>
+              <a href="/tags/for%E5%BE%AA%E7%8E%AF/" rel="tag"># for循环</a>
+              <a href="/tags/%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5/" rel="tag"># 四舍五入</a>
+              <a href="/tags/%E8%BF%90%E7%AE%97%E9%A1%BA%E5%BA%8F/" rel="tag"># 运算顺序</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/15/CS50-Lab2/" rel="prev" title="CS50-Lab2">
+      <i class="fa fa-chevron-left"></i> CS50-Lab2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">题目要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%94%B6%E8%8E%B7"><span class="nav-number">2.</span> <span class="nav-text">学习收获</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Function"><span class="nav-number">2.1.</span> <span class="nav-text">Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Function-Declarations"><span class="nav-number">2.1.1.</span> <span class="nav-text">1 Function Declarations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Function-Definitions"><span class="nav-number">2.1.2.</span> <span class="nav-text">2 Function Definitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Function-Calls"><span class="nav-number">2.1.3.</span> <span class="nav-text">3 Function Calls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Function-Miscellany"><span class="nav-number">2.1.4.</span> <span class="nav-text">4 Function Miscellany</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rounded-to-The-Nearest-Integer-%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5"><span class="nav-number">2.2.</span> <span class="nav-text">Rounded to The Nearest Integer (四舍五入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-is-Array"><span class="nav-number">2.3.</span> <span class="nav-text">String is Array</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%90%88%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">问题合集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F%E7%9A%84%E6%94%B9%E5%8F%98%E5%AF%BC%E8%87%B4%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">3.1.</span> <span class="nav-text">计算顺序的改变导致不同结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for%E5%BE%AA%E7%8E%AF%E7%9A%84"><span class="nav-number">3.2.</span> <span class="nav-text">for循环的{}</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E9%83%A8%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">全部代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E5%B2%9B%E6%8B%9C%E8%AE%BF"><span class="nav-number">5.</span> <span class="nav-text">小岛拜访</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">unbreakableyu</p>
+  <div class="site-description" itemprop="description">stay hungry, stay foolish</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">unbreakableyu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
