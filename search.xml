@@ -1,291 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/01/0%20hello-world/</url>
-    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
-]]></content>
-      <categories>
-        <category>🐟</category>
-      </categories>
-      <tags>
-        <tag>hello_world</tag>
-        <tag>Guten_Tag</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS50-Lab2</title>
-    <url>/2022/11/15/CS50-Lab2/</url>
-    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/labs/2/#lab-2-scrabble"><strong>Clickhere</strong></a><br></p>
-<p>概述：赋予每个字母不同的值，比较不同单词值的大小。</p>
-<span id="more"></span> 
-
-<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="String-is-Array"><a href="#String-is-Array" class="headerlink" title="String is Array"></a><strong>String is Array</strong></h2><p>字符串也是数组，<code>word[i])</code>。<br></p>
-<h2 id="Explicit-Casting-amp-Implicit-Casting"><a href="#Explicit-Casting-amp-Implicit-Casting" class="headerlink" title="Explicit Casting &amp; Implicit Casting"></a><strong>Explicit Casting &amp; Implicit Casting</strong></h2><p>__data type的转换__：显式转换与隐式转换。</p>
-<p>关于 <strong>类型转换</strong> 有两种情况：<em>自动类型转换</em> 与 _强制类型转换_。其中前者为隐式转换(Implicit Casting)，后者为显示转换(Explicit Casting)。<br></p>
-<p>本例中出现的类型转换为强制类型转换：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int c = (int) word[i];</span><br></pre></td></tr></table></figure>
-
-<h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><p>这种转换是在运算时不必用户干预，系统自动进行的类型转换，如<code>3 + 6.5</code>。<br></p>
-<p>关于自动类型转换，在红书S.54 <strong>不同类型数据的混合运算</strong> 部分有相关说明。<br></p>
-<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>关于强制类型转换，在红书S.56有如下说明：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(data-type)(expression)</span><br><span class="line">(类型名)(表达式)</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 这个过程是 <strong><code>passed by value</code></strong> ，而不是 <code>passed by reference</code>，这两者的辨析可以见 <a href="https://cs50.harvard.edu/x/2022/shorts/arrays/#arrays"><strong>Click here</strong></a>视频<code>10:50</code>位置。</p>
-<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><p><a href="https://bbs.csdn.net/topics/100110334">c语言中不同类型数据的比较问题</a>中的回答：<br></p>
-<blockquote>
-<p>译系统提供的内部数据类型的自动隐式转换规则如下：<br><br>　　1. 程序在执行算术运算时，低类型可以转换为高类型。<br><br>　　2. 在赋值表达式中，右边表达式的值自动隐式转换为左边变量的类型，并赋值给它。<br><br>　　3. 当在函数调用时，将实参值赋给形参，系统隐式地将实参转换为形参的类型后，赋给形参。<br><br>　　4. 函数有返回值时，系统将自动地将返回表达式类型转换为函数类型后，赋值给调用函数。<br><br><br>　　在以上情况下，系统会进行隐式转换的。当在程序中发现两个数据类型不相容时，又不能自动完成隐式转换，则将出现编译错误。例如：<br><br>　　　int * p &#x3D; 100;<br><br><br>　　在这种情况下，编译程序将报错，为了消除错误，可以进行如下所示的强制类型转换：<br><br>　　　int * p &#x3D; (int *)100;<br><br>　　将整型数100显式地转换成指针类型。<br><br><br>不同数据混合操作的时候，会发生数据类型的隐式转换。<br><br>在你列举的例子中，a 和 b 都被处理为 unsigned int 进行比较</p>
-</blockquote>
-<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">// Points assigned to each letter of the alphabet</span><br><span class="line">int POINTS[] = &#123;1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10&#125;;</span><br><span class="line"></span><br><span class="line">int compute_score(string word);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Get input words from both players</span><br><span class="line">    string word1 = get_string(&quot;Player 1: &quot;);</span><br><span class="line">    string word2 = get_string(&quot;Player 2: &quot;);</span><br><span class="line"></span><br><span class="line">    // Score both words</span><br><span class="line">    int score1 = compute_score(word1);</span><br><span class="line">    int score2 = compute_score(word2);</span><br><span class="line"></span><br><span class="line">    // TODO: Print the winner</span><br><span class="line">    if (score1 &lt; score2)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Player 2 wins!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (score1 &gt; score2)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Player 1 wins!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Tie!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int compute_score(string word)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO: Compute and return score for string</span><br><span class="line">    int score = 0;</span><br><span class="line">    int ascii;</span><br><span class="line">    // convert capitalize</span><br><span class="line">    for (int i = 0, n = strlen(word); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(word[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;A&#x27; in ASCII is 65</span><br><span class="line">            ascii = (int) word[i];</span><br><span class="line">            score += POINTS[ascii - 65];</span><br><span class="line">        &#125;</span><br><span class="line">        else if (islower(word[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;a&#x27; in ASCII is 97</span><br><span class="line">            ascii = (int) word[i];</span><br><span class="line">            score += POINTS[ascii - 97];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return score;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 Lab2</tag>
-        <tag>类型转换</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS50 PSet1: Mario</title>
-    <url>/2022/11/08/CS50-PSet1-Mario/</url>
-    <content><![CDATA[<p>挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。<br></p>
-<p>提交作业之后开始搜索其他同学的解法，这个过程发现了两个有趣blog，具体链接附在文末的 <strong>小岛拜访</strong> 环节。<br></p>
-<span id="more"></span> 
-
-<p><strong>进入正题：</strong> <br><br>官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-more<br><br><a href="https://cs50.harvard.edu/x/2022/psets/1/mario/more/"><strong>Clickhere</strong></a><br></p>
-<h1 id="Mario’s-Pyramid"><a href="#Mario’s-Pyramid" class="headerlink" title="Mario’s Pyramid"></a><strong>Mario’s Pyramid</strong></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>#</code>表示砖块，通过与操作者交互生成一个1~8层的 <strong>Pyramid</strong> ， 如下所示：<br></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #</span><br><span class="line">  ##  ##</span><br><span class="line"> ###  ###</span><br><span class="line">####  ####</span><br></pre></td></tr></table></figure>
-
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把目标输出图样拆分成四个步骤完成，分别是：<br></p>
-<ol>
-<li>提示操作者输入高度并检测输入值是否在范围内。</li>
-<li><code>#</code>前面部分的空格。</li>
-<li>左右两侧的<code>#</code>及中间的空格。</li>
-<li>换行重复上述两步。<br></li>
-</ol>
-<p>其中的核心思路我们用一个例子来分析。以高度为4的Pyramid为例：<br></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #     Row0  blank-space: 3  #: 1</span><br><span class="line">  ##  ##    Row1  blank-space: 2  #: 2</span><br><span class="line"> ###  ###   Row2  blank-space: 1  #: 3</span><br><span class="line">####  ####  Row3  blank-space: 0  #: 4</span><br></pre></td></tr></table></figure>
-<p>找到规律：<br></p>
-<blockquote>
-<p>空格数量 &#x3D; 高度 - Row + 1<br><br><code>#</code>数量 &#x3D; Row + 1<br></p>
-</blockquote>
-<p>将上述两个规律分别用下述形式表达：<br></p>
-<p><strong>blank:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void blank(int i, int Height)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = Height - i; j &gt; 0; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        // blankspace before #</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>bricks:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void bricks(int i)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        // each row output #</span><br><span class="line">        printf(&quot;#&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="程序展示"><a href="#程序展示" class="headerlink" title="程序展示"></a>程序展示</h2><p>下面是我的代码全貌，Pseudocode随后附上。<br></p>
-<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码:"></a><strong>完整代码:</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">#define MIN 1</span><br><span class="line">#define MAX 8</span><br><span class="line"></span><br><span class="line">void bricks(int j);</span><br><span class="line">void blank(int i, int Height);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Please input Height from %i to %i\n&quot;, MIN, MAX);</span><br><span class="line">    int Height;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        Height = get_int(&quot;Height: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (Height &lt; MIN || Height &gt; MAX);</span><br><span class="line">    for (int i = 1; i &lt;= Height; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        // Pyramid each row: many dots, numbers of #, &quot; &quot;, numbers of #</span><br><span class="line">        blank(i, Height);</span><br><span class="line">        bricks(i);</span><br><span class="line">        printf(&quot;  &quot;);</span><br><span class="line">        bricks(i);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void bricks(int i)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        // each row output #</span><br><span class="line">        printf(&quot;#&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void blank(int i, int Height)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = Height - i; j &gt; 0; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        // blankspace before #</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode :"></a><strong>Pseudocode :</strong></h3><pre><code>1. Prompt Height
-2. Check range 1-8, if not go back to step1
-3. Iterate i, each row from 1 through Height
-    1. Print many &quot; &quot;
-        1. Iterate j, j = Height - i, j &gt; 0, j--
-    2. Print bricks&quot;#&quot;
-        1. Iterate j, j = 0, j &lt; i, j--
-    3. Print &quot; &quot;
-    4. back to step3-2
-    5. new line
-</code></pre>
-<br>
-
-<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a><strong>小岛拜访</strong></h1><p><a href="https://cs50.stackexchange.com/"><strong>CS50的论坛</strong></a><br><br>官网作业中的习题解析挺有意思的，建议 <strong>less</strong> 和 <strong>more</strong> 两个版本的 <strong>walkthrough</strong> 都看一下。<br></p>
-<p><a href="https://www.highapproach.com/cs50-mario-more/"><strong>CS50 PSet 1: Mario-more Solution</strong></a><br><br>这位的大致思路：分为 <strong>提示user输入高度</strong> 与 <strong>生成 # 砖块</strong> 两部分。<br></p>
-<p><a href="https://www.houseninetytwo.com/week-1-cs50-pset1-solution/"><strong>[2018] cs50 Pset1: Mario solution</strong></a><br><br>这位的文章可以算一篇有趣日记。</p>
-]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 pset1</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS50 PSet1: Cash</title>
-    <url>/2022/11/10/CS50-Pset1-Cash/</url>
-    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/cash/"><strong>Clickhere</strong></a><br></p>
-<p>概述：把一定金额用最少的硬币来表示。</p>
-<span id="more"></span> 
-
-<h1 id="学到收获"><a href="#学到收获" class="headerlink" title="学到收获"></a>学到收获</h1><h2 id="Greedy-Algorithms"><a href="#Greedy-Algorithms" class="headerlink" title="Greedy Algorithms"></a><strong>Greedy Algorithms</strong></h2><p>详细见题目要求。<br></p>
-<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="Side-Effect"><a href="#Side-Effect" class="headerlink" title="Side Effect"></a><strong>Side Effect</strong></h2><p><strong>推荐阅读的链接:</strong> <br><br><a href="https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect">What is a “side effect?”</a><br></p>
-<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int get_cents(void);</span><br><span class="line">int calculate_quarters(int cents);</span><br><span class="line">int calculate_dimes(int cents);</span><br><span class="line">int calculate_nickels(int cents);</span><br><span class="line">int calculate_pennies(int cents);</span><br><span class="line"></span><br><span class="line">int main(void)z</span><br><span class="line">&#123;</span><br><span class="line">    // Ask how many cents the customer is owed</span><br><span class="line">    int cents = get_cents();</span><br><span class="line"></span><br><span class="line">    // Calculate the number of quarters to give the customer</span><br><span class="line">    int quarters = calculate_quarters(cents);</span><br><span class="line">    cents = cents - quarters * 25;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of dimes to give the customer</span><br><span class="line">    int dimes = calculate_dimes(cents);</span><br><span class="line">    cents = cents - dimes * 10;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of nickels to give the customer</span><br><span class="line">    int nickels = calculate_nickels(cents);</span><br><span class="line">    cents = cents - nickels * 5;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of pennies to give the customer</span><br><span class="line">    int pennies = calculate_pennies(cents);</span><br><span class="line">    cents = cents - pennies * 1;</span><br><span class="line"></span><br><span class="line">    // Sum coins</span><br><span class="line">    int coins = quarters + dimes + nickels + pennies;</span><br><span class="line"></span><br><span class="line">    // Print total number of coins to give the customer</span><br><span class="line">    printf(&quot;%i\n&quot;, coins);</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">    // Test cents</span><br><span class="line">    printf(&quot;%i\n&quot;, cents);</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int get_cents(void)</span><br><span class="line">&#123;</span><br><span class="line">    int cents;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        cents = get_int(&quot;Change owed: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (cents &lt; 0);</span><br><span class="line">    return cents;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_quarters(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int quarters = cents / 25;</span><br><span class="line">    return quarters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_dimes(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int dimes = cents / 10;</span><br><span class="line">    return dimes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_nickels(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int nickels =  cents / 5;</span><br><span class="line">    return nickels;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_pennies(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int pennies = cents / 1;</span><br><span class="line">    return pennies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 pset1</tag>
-        <tag>Side Effect</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS50-Pset2-Readability</title>
-    <url>/2022/11/15/CS50-Pset2-Readability/</url>
-    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/2/readability/#readability"><strong>Clickhere</strong></a><br></p>
-<p>概述：根据一段文本来判断该文本对应的阅读水平。<br></p>
-<p>其中用到公式：<br><br>index &#x3D; 0.0588 * L - 0.296 * S - 15.8<br></p>
-<span id="more"></span> 
-
-<p>计算其中的L(letters per 100 words)，S(sentences per 100 words)以及w(words)，代入公式求出index。<br></p>
-<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a><strong>Function</strong></h2><p>在该问题中将求 <strong>letters</strong> , <strong>sentences</strong> 以及 <strong>words</strong> 用单独的 <strong>function</strong> 表示。<br></p>
-<h3 id="1-Function-Declarations"><a href="#1-Function-Declarations" class="headerlink" title="1 Function Declarations"></a><strong>1 Function Declarations</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">return-type name(argument-list);</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-Function-Definitions"><a href="#2-Function-Definitions" class="headerlink" title="2 Function Definitions"></a><strong>2 Function Definitions</strong><br></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">return-type name(argument-list)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-Function-Calls"><a href="#3-Function-Calls" class="headerlink" title="3 Function Calls"></a><strong>3 Function Calls</strong><br></h3><h3 id="4-Function-Miscellany"><a href="#4-Function-Miscellany" class="headerlink" title="4 Function Miscellany"></a><strong>4 Function Miscellany</strong><br></h3><h2 id="Rounded-to-The-Nearest-Integer-四舍五入"><a href="#Rounded-to-The-Nearest-Integer-四舍五入" class="headerlink" title="Rounded to The Nearest Integer (四舍五入)"></a><strong>Rounded to The Nearest Integer</strong> (四舍五入)</h2><p>根据数据的精度，选择在原计算结果上<code>+ 0.5</code>, <code>+ 0.05</code>以此类推，本题目中如下展示：<br></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">float g = (0.0588 * l - 0.296 * s) * 100 / w - 15.8;</span><br><span class="line">int index = 0.5 + g;</span><br></pre></td></tr></table></figure>
-
-<h2 id="String-is-Array"><a href="#String-is-Array" class="headerlink" title="String is Array"></a><strong>String is Array</strong></h2><p>本题目中依旧用到了和 <strong>Lab 2</strong> 一样的部分，通过判断比较字符串里的每一个元素，以达到目的。<br></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="计算顺序的改变导致不同结果"><a href="#计算顺序的改变导致不同结果" class="headerlink" title="计算顺序的改变导致不同结果"></a>计算顺序的改变导致不同结果</h2><p>起初在<code>index</code>计算结果的基础上<code>+ 0.5</code>，即</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int index = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br></pre></td></tr></table></figure>
-
-<p>的确能够使原来的计算结果<code>4.5557</code>，<code>int index = 4</code>，达到预期结果<code>Grade 5</code> 。<br></p>
-<p>但使用<code>check50</code>检查的时候发现有一种情况不合格：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:( handles single sentence with multiple words</span><br><span class="line">    expected &quot;Grade 7\n&quot;, not &quot;Grade 8\n&quot;</span><br></pre></td></tr></table></figure>
-
-<p>以下为对应测试的文本(Grade 7)：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">In my younger and more vulnerable years my father gave me some advice that I&#x27;ve been turning over in my mind ever since.(Grade 7)</span><br><span class="line">words: 23</span><br><span class="line">letters: 96</span><br><span class="line">sentences: 1</span><br><span class="line">Grade 8</span><br></pre></td></tr></table></figure>
-
-<p>起初认为是四舍五入的精度问题，于是将式子中的<code>0.5</code>更改为<code>0.05</code>甚至<code>0.005</code>，不仅之前的错误未能修改，还出现了更多的”文本等级不符合应有的等级”情况。<br></p>
-<p>经过检查，发现是运算顺序的不一致导致了不同的结果。以下使测试代码及输出结果：<br><br><strong>测试代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">float a = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br><span class="line">float b = 0.5 + 0.0588 * l * 100 / w - 0.296 * s * 100 / w - 15.8;</span><br><span class="line"></span><br><span class="line">int c = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br><span class="line">int d = 0.5 + 0.0588 * l * 100 / w - 0.296 * s * 100 / w - 15.8;</span><br></pre></td></tr></table></figure>
-
-<p><strong>输出结果</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a: 8.035600, b: 7.955652, c: 8, d:7</span><br></pre></td></tr></table></figure>
-
-<p>于是根据测试结果将对应部分修改为：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int index = 0.5 + (0.0588 * l - 0.296 * s) * 100 / w - 15.8;</span><br></pre></td></tr></table></figure>
-
-<h2 id="for循环的"><a href="#for循环的" class="headerlink" title="for循环的{}"></a>for循环的{}</h2><p>初始版本的 <strong>for循环</strong> 漏掉<code>&#123;&#125;</code>，但程序依然通过编译，且通过了<code>check50</code>的测试，直到使用<code>style50</code>才发现了这个错误。<br></p>
-<p><strong>错误版本</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>猜测是因为只有 <strong>一个</strong> if语句，所以编译时默认该if语句是在for循环里的，为了验证猜测正确与否，随后增加一个语句，修改完之后如下所示：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;l: %i&quot;, letters);</span><br></pre></td></tr></table></figure>
-
-<p>这样就无法通过编译，出现如下报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">readability.c:7:9: error: misleading indentation; statement is not part of the previous &#x27;for&#x27; [-Werror,-Wmisleading-indentation]</span><br><span class="line">        printf(&quot;l: %i&quot;, letters);</span><br><span class="line">        ^</span><br><span class="line">readability.c:1:5: note: previous statement is here</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    ^</span><br></pre></td></tr></table></figure>
-
-<p>除此之外，我将if语句部分取消缩进，修改为下述形式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line"></span><br><span class="line">if (isupper(text[i]) || islower(text[i]))</span><br><span class="line">&#123;</span><br><span class="line">    letters++;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;l: %i&quot;, letters);</span><br></pre></td></tr></table></figure>
-<p>却意外发现能通过编译，且结果依然正确。<br></p>
-<p>按照测试结果来看：<br></p>
-<ol>
-<li>如果使用for循环却忘记用<code>&#123;&#125;</code>框住循环的内容，会默认随后第一句为循环内容，随后的第二句就不在循环内了。</li>
-<li>如果后面循环内容都缩进1个<code>Tab</code>，则会在编译时出现报错。<br></li>
-</ol>
-<p>具体原因我也不太懂，暂时没能在中文网络上检索到相关信息，感觉像是游戏里的精英怪保护机制一样，保护粗心的人忘记在for循环后面加<code>&#123;&#125;</code>，神奇！或许学到以后就懂了？</p>
-<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int count_letters(string text);</span><br><span class="line">int count_words(string text);</span><br><span class="line">int count_sentences(string text);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Prompt user to input</span><br><span class="line">    string text = get_string(&quot;Text: &quot;);</span><br><span class="line"></span><br><span class="line">    // get the l, s and w</span><br><span class="line">    // index = 0.0588 * L - 0.296 * S - 15.8</span><br><span class="line">    int w = count_words(text);</span><br><span class="line">    int l = count_letters(text);</span><br><span class="line">    int s = count_sentences(text);</span><br><span class="line"></span><br><span class="line">    // 0.5 is used to round the result</span><br><span class="line">    int index = 0.5 + (0.0588 * l - 0.296 * s) * 100 / w  - 15.8;</span><br><span class="line"></span><br><span class="line">    // Grade</span><br><span class="line">    if (index &lt; 1)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Before Grade 1\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (index &gt; 16)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Grade 16+\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Grade %i\n&quot;, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_letters(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count letters</span><br><span class="line">    int letters = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(text[i]) || islower(text[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            letters++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;letters: %i\n&quot;, letters);</span><br><span class="line">    return letters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_words(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count words</span><br><span class="line">    int words;</span><br><span class="line">    int spaces = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (text[i] == &#x27; &#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            spaces++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    words = spaces + 1;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;words: %i\n&quot;, words);</span><br><span class="line">    return words;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_sentences(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count sentences</span><br><span class="line">    int sentences = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (text[i] == &#x27;.&#x27; || text[i] == &#x27;!&#x27; || text[i] == &#x27;?&#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            sentences++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;sentences: %i\n&quot;, sentences);</span><br><span class="line">    return sentences;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a><strong>小岛拜访</strong></h1><p><a href="https://manual.cs50.io/">CS50 Manual Pages</a>：查询不同的库函数及作用。<br></p>
-]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 pset2</tag>
-        <tag>for循环</tag>
-        <tag>四舍五入</tag>
-        <tag>运算顺序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS50-Pset1-Credit</title>
-    <url>/2022/11/10/CS50-Pset1-Credit/</url>
-    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/credit/"><strong>Clickhere</strong></a><br></p>
-<p>概述：验证银行卡卡号是否有效，并判断对应的银行。</p>
-<span id="more"></span> 
-
-<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="利用Printf检验步骤"><a href="#利用Printf检验步骤" class="headerlink" title="利用Printf检验步骤"></a><strong>利用<code>Printf</code>检验步骤</strong></h2><p>利用printf把过程中出现的variable print出来，检测是哪一步出了问题。<br></p>
-<h2 id="Luhn’s-Algorithm"><a href="#Luhn’s-Algorithm" class="headerlink" title="Luhn’s Algorithm"></a><strong>Luhn’s Algorithm</strong></h2><p>详细见题目要求。</p>
-<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="1-Number-1e16-报错"><a href="#1-Number-1e16-报错" class="headerlink" title="1 Number % 1e16 报错"></a>1 <code>Number % 1e16</code> 报错</h2><p>Number的数据类型是整型，而1e16的数据类型为double。</p>
-<p>根源解析</p>
-<p>红书S.53说明的第二、三点：参加%的运算对象必须是整数。</p>
-<p>解决问题过程中查阅到的资料：<br></p>
-<p><a href="https://blog.csdn.net/mmk27_word/article/details/84378346">数据类型的长度及范围整理</a><br></p>
-<p><a href="https://blog.csdn.net/Tianqf505/article/details/105645290">C语言中不同类型的运算和比较问题</a><br></p>
-<p><a href="https://bbs.csdn.net/topics/100110334">c语言中不同类型数据的比较问题</a><br></p>
-<p><a href="https://cs50.stackexchange.com/questions/30385/struggling-to-understand-the-meaning-of-get-long-long-in-credit-cmore-comfort">struggling to understand the meaning of “get_long_long” in credit.c(more comfortable)</a><br></p>
-<h2 id="2-提交前的小问题："><a href="#2-提交前的小问题：" class="headerlink" title="2 提交前的小问题："></a>2 提交前的小问题：<br></h2><p><a href="https://www.editcode.net/ask/333537.html">CS50：信用。为什么“ 4062901840”不会被评估为无效，如果其他10位数字确实被评估为无效？</a><br></p>
-<p><a href="https://solveforum.com/forums/threads/solved-cs50-credit-why-is-4062901840-not-getting-evaluated-as-invalid-if-every-other-10-digit-number-is-indeed-evaluated-as-invalid.1091350/">[Solved] CS50:Credit. Why is “4062901840” not getting evaluated as INVALID, if every other 10 digit number is indeed evaluated as INVALID?</a><br></p>
-<h2 id="3-Style问题"><a href="#3-Style问题" class="headerlink" title="3 Style问题"></a>3 Style问题<br></h2><p>for, while之类的，后面要空一格再接括号<br></p>
-<h2 id="4-次幂怎么表示"><a href="#4-次幂怎么表示" class="headerlink" title="4 次幂怎么表示"></a>4 次幂怎么表示<br></h2><p><a href="https://blog.csdn.net/renyuxiaomei/article/details/78164492">在C语言中10的N次方怎么表示</a><br></p>
-<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Length = i</span><br><span class="line">    int i = 0;</span><br><span class="line"></span><br><span class="line">    // suma is sum of digit*2</span><br><span class="line">    // sumb is sum of others</span><br><span class="line">    int suma = 0;</span><br><span class="line">    int sumb = 0;</span><br><span class="line"></span><br><span class="line">    // To check the first digit</span><br><span class="line">    int remainder;</span><br><span class="line">    // To check the 1st &amp; 2nd digits</span><br><span class="line">    int remainderx;</span><br><span class="line"></span><br><span class="line">    // Prompt user input number</span><br><span class="line">    long long int Number = get_long(&quot;Number: &quot;);</span><br><span class="line"></span><br><span class="line">    // Checksum</span><br><span class="line">    while (Number != 0)</span><br><span class="line">    &#123;</span><br><span class="line">        // Get every digit and sum</span><br><span class="line">        i++;</span><br><span class="line">        remainder = Number % 10;</span><br><span class="line">        if (i % 2)</span><br><span class="line">        &#123;</span><br><span class="line">            // Others sum</span><br><span class="line">            sumb += remainder;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            // Every other sum</span><br><span class="line">            if ((remainder * 2) &lt; 10)</span><br><span class="line">            &#123;</span><br><span class="line">                suma += (remainder * 2);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                // If result of digit*2 own 2digit</span><br><span class="line">                // The biggest &lt; 20, so +1</span><br><span class="line">                suma += ((remainder * 2) % 10 + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (Number &lt; 1000 &amp;&amp; Number &gt; 99)</span><br><span class="line">        &#123;</span><br><span class="line">            // mark the 1st &amp; 2nd digits</span><br><span class="line">            remainderx = Number / 10;</span><br><span class="line">        &#125;</span><br><span class="line">        Number /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    int sum = suma + sumb;</span><br><span class="line"></span><br><span class="line">    // Valid or Invalid</span><br><span class="line">    if (sum % 10)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check the last digit 0?</span><br><span class="line">        printf(&quot;INVALID\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (i == 15)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check AMEX?</span><br><span class="line">        if (remainderx == 34 || remainderx == 37)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;AMEX\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;INVALID\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (i == 13)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check VISA?</span><br><span class="line">        if (remainder == 4)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;VISA\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;INVALID\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (i == 16)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check VISA?</span><br><span class="line">        if (remainder == 4)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;VISA\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else if (remainderx == 51 || remainderx == 52 || remainderx == 53 || remainderx == 54 || remainderx == 55)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;MASTERCARD\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;INVALID\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;INVALID\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">        // Test by printf</span><br><span class="line">        printf(&quot;Test:\nsum: %i, suma: %i, sumb: %i\n&quot;, sum, suma, sumb);</span><br><span class="line">        printf(&quot;remainder: %i, remainderx: %i, length: %i\n&quot;, remainder, remainderx, i);</span><br><span class="line">    */</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>类型转换</tag>
-        <tag>CS50x 2022 pset1</tag>
-        <tag>casting</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FAQ submit50</title>
-    <url>/2022/11/07/CS50L1%20FAQ%20submit50/</url>
-    <content><![CDATA[<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid slug </span><br><span class="line">Submission cancelled.</span><br></pre></td></tr></table></figure>
-<span id="more"></span> 
-
-<p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
-<p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
-<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
-<p>帖子的评论区有如下对话：<br></p>
-<blockquote>
-<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?</p>
-</blockquote>
-<blockquote>
-<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently? </p>
-</blockquote>
-<p>注意，在两人的讨论中提到了：<br></p>
-<blockquote>
-<p><strong>add</strong> you to the new submission process</p>
-</blockquote>
-<blockquote>
-<p>Have you <strong>accepted the invitation</strong>?</p>
-</blockquote>
-<blockquote>
-<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.</p>
-</blockquote>
-<p>也就是说：<br></p>
-<p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
-<ol>
-<li>接受 <strong>课程邀请 invitation</strong> 。</li>
-<li>关联 <strong>github</strong> 与 <strong>edX</strong> 的账号。</li>
-<li>在 <strong>github</strong> 加入 <strong>CS50X 2022</strong> 的课程。</li>
-</ol>
-<p>而这些 <strong>关联</strong> 与 <strong>加入课程</strong> 都是在官网教程中的某一步时有操作过的，但是当时网络状况堪忧或者其他原因，导致 <strong>关联</strong> 步骤未能完成。<br></p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
-<li>在edX的 <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home">课程 | CS50</a> 页面顶端寻找授权链接，接受邀请并关联授权你的 <strong>github</strong> 账号。</li>
-<li>在 <strong>Problemset</strong> 进入 <strong>VS Code</strong> 时会有一个 <strong>Log in via Github</strong> 的按钮让你关联。</li>
-<li>在 <a href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
-</ol>
-<p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
-<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 <strong>yes</strong> ，需要再检查一下就回答 <strong>no</strong> 。</p>
-]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 L1</tag>
-        <tag>submit50</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 教程(未完结)</title>
-    <url>/2022/11/01/Markdown-lernen/</url>
+    <url>/2022/11/01/0%20Markdown-lernen/</url>
     <content><![CDATA[<h1 id="概述-Overview"><a href="#概述-Overview" class="headerlink" title="概述 Overview"></a>概述 Overview</h1><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。<br>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。<br>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。<br>Markdown 编写的文档后缀为 .md, .markdown。  </p>
 <span id="more"></span> 
 <br>
@@ -461,6 +178,319 @@
       <tags>
         <tag>lernen</tag>
         <tag>👋🐟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/01/0%20hello-world/</url>
+    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
+]]></content>
+      <categories>
+        <category>🐟</category>
+      </categories>
+      <tags>
+        <tag>hello_world</tag>
+        <tag>Guten_Tag</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50-Lab2</title>
+    <url>/2022/11/15/CS50-Lab2/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/labs/2/#lab-2-scrabble"><strong>Clickhere</strong></a><br><br>概述：赋予每个字母不同的值，比较不同单词值的大小。</p>
+<span id="more"></span> 
+
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="String-is-Array"><a href="#String-is-Array" class="headerlink" title="String is Array"></a><strong>String is Array</strong></h2><p>字符串也是数组，<code>word[i])</code>。<br></p>
+<h2 id="Explicit-Casting-amp-Implicit-Casting"><a href="#Explicit-Casting-amp-Implicit-Casting" class="headerlink" title="Explicit Casting &amp; Implicit Casting"></a><strong>Explicit Casting &amp; Implicit Casting</strong></h2><p>__data type的转换__：显式转换与隐式转换。</p>
+<p>关于 <strong>类型转换</strong> 有两种情况：<em>自动类型转换</em> 与 _强制类型转换_。其中前者为隐式转换(Implicit Casting)，后者为显示转换(Explicit Casting)。<br></p>
+<p>本例中出现的类型转换为强制类型转换：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int c = (int) word[i];</span><br></pre></td></tr></table></figure>
+
+<h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><p>这种转换是在运算时不必用户干预，系统自动进行的类型转换，如<code>3 + 6.5</code>。<br></p>
+<p>关于自动类型转换，在红书S.54 <strong>不同类型数据的混合运算</strong> 部分有相关说明。<br></p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>关于强制类型转换，在红书S.56有如下说明：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(data-type)(expression)</span><br><span class="line">(类型名)(表达式)</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 这个过程是 <strong><code>passed by value</code></strong> ，而不是 <code>passed by reference</code>，这两者的辨析可以见 <a href="https://cs50.harvard.edu/x/2022/shorts/arrays/#arrays"><strong>Click here</strong></a>视频<code>10:50</code>位置。</p>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><p><a href="https://bbs.csdn.net/topics/100110334">c语言中不同类型数据的比较问题</a>中的回答：<br></p>
+<blockquote>
+<p>译系统提供的内部数据类型的自动隐式转换规则如下：<br><br>　　1. 程序在执行算术运算时，低类型可以转换为高类型。<br><br>　　2. 在赋值表达式中，右边表达式的值自动隐式转换为左边变量的类型，并赋值给它。<br><br>　　3. 当在函数调用时，将实参值赋给形参，系统隐式地将实参转换为形参的类型后，赋给形参。<br><br>　　4. 函数有返回值时，系统将自动地将返回表达式类型转换为函数类型后，赋值给调用函数。<br><br><br>　　在以上情况下，系统会进行隐式转换的。当在程序中发现两个数据类型不相容时，又不能自动完成隐式转换，则将出现编译错误。例如：<br><br>　　　int * p &#x3D; 100;<br><br><br>　　在这种情况下，编译程序将报错，为了消除错误，可以进行如下所示的强制类型转换：<br><br>　　　int * p &#x3D; (int *)100;<br><br>　　将整型数100显式地转换成指针类型。<br><br><br>不同数据混合操作的时候，会发生数据类型的隐式转换。<br><br>在你列举的例子中，a 和 b 都被处理为 unsigned int 进行比较</p>
+</blockquote>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">// Points assigned to each letter of the alphabet</span><br><span class="line">int POINTS[] = &#123;1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10&#125;;</span><br><span class="line"></span><br><span class="line">int compute_score(string word);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Get input words from both players</span><br><span class="line">    string word1 = get_string(&quot;Player 1: &quot;);</span><br><span class="line">    string word2 = get_string(&quot;Player 2: &quot;);</span><br><span class="line"></span><br><span class="line">    // Score both words</span><br><span class="line">    int score1 = compute_score(word1);</span><br><span class="line">    int score2 = compute_score(word2);</span><br><span class="line"></span><br><span class="line">    // TODO: Print the winner</span><br><span class="line">    if (score1 &lt; score2)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Player 2 wins!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (score1 &gt; score2)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Player 1 wins!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Tie!\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int compute_score(string word)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO: Compute and return score for string</span><br><span class="line">    int score = 0;</span><br><span class="line">    int ascii;</span><br><span class="line">    // convert capitalize</span><br><span class="line">    for (int i = 0, n = strlen(word); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(word[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;A&#x27; in ASCII is 65</span><br><span class="line">            ascii = (int) word[i];</span><br><span class="line">            score += POINTS[ascii - 65];</span><br><span class="line">        &#125;</span><br><span class="line">        else if (islower(word[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;a&#x27; in ASCII is 97</span><br><span class="line">            ascii = (int) word[i];</span><br><span class="line">            score += POINTS[ascii - 97];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return score;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 Lab2</tag>
+        <tag>类型转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50 PSet1: Mario</title>
+    <url>/2022/11/08/CS50-PSet1-Mario/</url>
+    <content><![CDATA[<p>挺神奇的，原本对自己完成pset1 mario的时间估计是一天，没想到半天就完成了！所以在完成之前给自己点了杯奶茶庆祝。<br></p>
+<p>提交作业之后开始搜索其他同学的解法，这个过程发现了两个有趣blog，具体链接附在文末的 <strong>小岛拜访</strong> 环节。<br></p>
+<span id="more"></span> 
+
+<p><strong>进入正题：</strong> <br><br>官网给的是两个不同难度的习题，因为解题思路基本一致，故此处只展示习题mario-more<br><br><a href="https://cs50.harvard.edu/x/2022/psets/1/mario/more/"><strong>Clickhere</strong></a><br></p>
+<h1 id="Mario’s-Pyramid"><a href="#Mario’s-Pyramid" class="headerlink" title="Mario’s Pyramid"></a><strong>Mario’s Pyramid</strong></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用<code>#</code>表示砖块，通过与操作者交互生成一个1~8层的 <strong>Pyramid</strong> ， 如下所示：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #</span><br><span class="line">  ##  ##</span><br><span class="line"> ###  ###</span><br><span class="line">####  ####</span><br></pre></td></tr></table></figure>
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>把目标输出图样拆分成四个步骤完成，分别是：<br></p>
+<ol>
+<li>提示操作者输入高度并检测输入值是否在范围内。</li>
+<li><code>#</code>前面部分的空格。</li>
+<li>左右两侧的<code>#</code>及中间的空格。</li>
+<li>换行重复上述两步。<br></li>
+</ol>
+<p>其中的核心思路我们用一个例子来分析。以高度为4的Pyramid为例：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   #  #     Row0  blank-space: 3  #: 1</span><br><span class="line">  ##  ##    Row1  blank-space: 2  #: 2</span><br><span class="line"> ###  ###   Row2  blank-space: 1  #: 3</span><br><span class="line">####  ####  Row3  blank-space: 0  #: 4</span><br></pre></td></tr></table></figure>
+<p>找到规律：<br></p>
+<blockquote>
+<p>空格数量 &#x3D; 高度 - Row + 1<br><br><code>#</code>数量 &#x3D; Row + 1<br></p>
+</blockquote>
+<p>将上述两个规律分别用下述形式表达：<br></p>
+<p><strong>blank:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void blank(int i, int Height)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = Height - i; j &gt; 0; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        // blankspace before #</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>bricks:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void bricks(int i)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        // each row output #</span><br><span class="line">        printf(&quot;#&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="程序展示"><a href="#程序展示" class="headerlink" title="程序展示"></a>程序展示</h2><p>下面是我的代码全貌，Pseudocode随后附上。<br></p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码:"></a><strong>完整代码:</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">#define MIN 1</span><br><span class="line">#define MAX 8</span><br><span class="line"></span><br><span class="line">void bricks(int j);</span><br><span class="line">void blank(int i, int Height);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;Please input Height from %i to %i\n&quot;, MIN, MAX);</span><br><span class="line">    int Height;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        Height = get_int(&quot;Height: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (Height &lt; MIN || Height &gt; MAX);</span><br><span class="line">    for (int i = 1; i &lt;= Height; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        // Pyramid each row: many dots, numbers of #, &quot; &quot;, numbers of #</span><br><span class="line">        blank(i, Height);</span><br><span class="line">        bricks(i);</span><br><span class="line">        printf(&quot;  &quot;);</span><br><span class="line">        bricks(i);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void bricks(int i)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = 0; j &lt; i; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        // each row output #</span><br><span class="line">        printf(&quot;#&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void blank(int i, int Height)</span><br><span class="line">&#123;</span><br><span class="line">    for (int j = Height - i; j &gt; 0; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        // blankspace before #</span><br><span class="line">        printf(&quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode :"></a><strong>Pseudocode :</strong></h3><pre><code>1. Prompt Height
+2. Check range 1-8, if not go back to step1
+3. Iterate i, each row from 1 through Height
+    1. Print many &quot; &quot;
+        1. Iterate j, j = Height - i, j &gt; 0, j--
+    2. Print bricks&quot;#&quot;
+        1. Iterate j, j = 0, j &lt; i, j--
+    3. Print &quot; &quot;
+    4. back to step3-2
+    5. new line
+</code></pre>
+<br>
+
+<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a><strong>小岛拜访</strong></h1><p><a href="https://cs50.stackexchange.com/"><strong>CS50的论坛</strong></a><br><br>官网作业中的习题解析挺有意思的，建议 <strong>less</strong> 和 <strong>more</strong> 两个版本的 <strong>walkthrough</strong> 都看一下。<br></p>
+<p><a href="https://www.highapproach.com/cs50-mario-more/"><strong>CS50 PSet 1: Mario-more Solution</strong></a><br><br>这位的大致思路：分为 <strong>提示user输入高度</strong> 与 <strong>生成 # 砖块</strong> 两部分。<br></p>
+<p><a href="https://www.houseninetytwo.com/week-1-cs50-pset1-solution/"><strong>[2018] cs50 Pset1: Mario solution</strong></a><br><br>这位的文章可以算一篇有趣日记。</p>
+]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 pset1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50 PSet1: Cash</title>
+    <url>/2022/11/10/CS50-Pset1-Cash/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/cash/"><strong>Clickhere</strong></a><br><br>概述：把一定金额用最少的硬币来表示。</p>
+<span id="more"></span> 
+
+<h1 id="学到收获"><a href="#学到收获" class="headerlink" title="学到收获"></a>学到收获</h1><h2 id="Greedy-Algorithms"><a href="#Greedy-Algorithms" class="headerlink" title="Greedy Algorithms"></a><strong>Greedy Algorithms</strong></h2><p>详细见题目要求。<br></p>
+<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="Side-Effect"><a href="#Side-Effect" class="headerlink" title="Side Effect"></a><strong>Side Effect</strong></h2><p><strong>推荐阅读的链接:</strong> <br><br><a href="https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect">What is a “side effect?”</a><br></p>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int get_cents(void);</span><br><span class="line">int calculate_quarters(int cents);</span><br><span class="line">int calculate_dimes(int cents);</span><br><span class="line">int calculate_nickels(int cents);</span><br><span class="line">int calculate_pennies(int cents);</span><br><span class="line"></span><br><span class="line">int main(void)z</span><br><span class="line">&#123;</span><br><span class="line">    // Ask how many cents the customer is owed</span><br><span class="line">    int cents = get_cents();</span><br><span class="line"></span><br><span class="line">    // Calculate the number of quarters to give the customer</span><br><span class="line">    int quarters = calculate_quarters(cents);</span><br><span class="line">    cents = cents - quarters * 25;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of dimes to give the customer</span><br><span class="line">    int dimes = calculate_dimes(cents);</span><br><span class="line">    cents = cents - dimes * 10;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of nickels to give the customer</span><br><span class="line">    int nickels = calculate_nickels(cents);</span><br><span class="line">    cents = cents - nickels * 5;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of pennies to give the customer</span><br><span class="line">    int pennies = calculate_pennies(cents);</span><br><span class="line">    cents = cents - pennies * 1;</span><br><span class="line"></span><br><span class="line">    // Sum coins</span><br><span class="line">    int coins = quarters + dimes + nickels + pennies;</span><br><span class="line"></span><br><span class="line">    // Print total number of coins to give the customer</span><br><span class="line">    printf(&quot;%i\n&quot;, coins);</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">    // Test cents</span><br><span class="line">    printf(&quot;%i\n&quot;, cents);</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int get_cents(void)</span><br><span class="line">&#123;</span><br><span class="line">    int cents;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        cents = get_int(&quot;Change owed: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (cents &lt; 0);</span><br><span class="line">    return cents;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_quarters(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int quarters = cents / 25;</span><br><span class="line">    return quarters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_dimes(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int dimes = cents / 10;</span><br><span class="line">    return dimes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_nickels(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int nickels =  cents / 5;</span><br><span class="line">    return nickels;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_pennies(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int pennies = cents / 1;</span><br><span class="line">    return pennies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 pset1</tag>
+        <tag>Side Effect</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50-Pset1-Credit</title>
+    <url>/2022/11/10/CS50-Pset1-Credit/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/credit/"><strong>Clickhere</strong></a><br><br>概述：验证银行卡卡号是否有效，并判断对应的银行。</p>
+<span id="more"></span> 
+
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="利用Printf检验步骤"><a href="#利用Printf检验步骤" class="headerlink" title="利用Printf检验步骤"></a><strong>利用<code>Printf</code>检验步骤</strong></h2><p>利用printf把过程中出现的variable print出来，检测是哪一步出了问题。<br></p>
+<h2 id="Luhn’s-Algorithm"><a href="#Luhn’s-Algorithm" class="headerlink" title="Luhn’s Algorithm"></a><strong>Luhn’s Algorithm</strong></h2><p>详细见题目要求。</p>
+<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="1-Number-1e16-报错"><a href="#1-Number-1e16-报错" class="headerlink" title="1 Number % 1e16 报错"></a>1 <code>Number % 1e16</code> 报错</h2><p>Number的数据类型是整型，而1e16的数据类型为double。</p>
+<p>根源解析</p>
+<p>红书S.53说明的第二、三点：参加%的运算对象必须是整数。</p>
+<p>解决问题过程中查阅到的资料：<br></p>
+<p><a href="https://blog.csdn.net/mmk27_word/article/details/84378346">数据类型的长度及范围整理</a><br></p>
+<p><a href="https://blog.csdn.net/Tianqf505/article/details/105645290">C语言中不同类型的运算和比较问题</a><br></p>
+<p><a href="https://bbs.csdn.net/topics/100110334">c语言中不同类型数据的比较问题</a><br></p>
+<p><a href="https://cs50.stackexchange.com/questions/30385/struggling-to-understand-the-meaning-of-get-long-long-in-credit-cmore-comfort">struggling to understand the meaning of “get_long_long” in credit.c(more comfortable)</a><br></p>
+<h2 id="2-提交前的小问题："><a href="#2-提交前的小问题：" class="headerlink" title="2 提交前的小问题："></a>2 提交前的小问题：<br></h2><p><a href="https://www.editcode.net/ask/333537.html">CS50：信用。为什么“ 4062901840”不会被评估为无效，如果其他10位数字确实被评估为无效？</a><br></p>
+<p><a href="https://solveforum.com/forums/threads/solved-cs50-credit-why-is-4062901840-not-getting-evaluated-as-invalid-if-every-other-10-digit-number-is-indeed-evaluated-as-invalid.1091350/">[Solved] CS50:Credit. Why is “4062901840” not getting evaluated as INVALID, if every other 10 digit number is indeed evaluated as INVALID?</a><br></p>
+<h2 id="3-Style问题"><a href="#3-Style问题" class="headerlink" title="3 Style问题"></a>3 Style问题<br></h2><p>for, while之类的，后面要空一格再接括号<br></p>
+<h2 id="4-次幂怎么表示"><a href="#4-次幂怎么表示" class="headerlink" title="4 次幂怎么表示"></a>4 次幂怎么表示<br></h2><p><a href="https://blog.csdn.net/renyuxiaomei/article/details/78164492">在C语言中10的N次方怎么表示</a><br></p>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Length = i</span><br><span class="line">    int i = 0;</span><br><span class="line"></span><br><span class="line">    // suma is sum of digit*2</span><br><span class="line">    // sumb is sum of others</span><br><span class="line">    int suma = 0;</span><br><span class="line">    int sumb = 0;</span><br><span class="line"></span><br><span class="line">    // To check the first digit</span><br><span class="line">    int remainder;</span><br><span class="line">    // To check the 1st &amp; 2nd digits</span><br><span class="line">    int remainderx;</span><br><span class="line"></span><br><span class="line">    // Prompt user input number</span><br><span class="line">    long long int Number = get_long(&quot;Number: &quot;);</span><br><span class="line"></span><br><span class="line">    // Checksum</span><br><span class="line">    while (Number != 0)</span><br><span class="line">    &#123;</span><br><span class="line">        // Get every digit and sum</span><br><span class="line">        i++;</span><br><span class="line">        remainder = Number % 10;</span><br><span class="line">        if (i % 2)</span><br><span class="line">        &#123;</span><br><span class="line">            // Others sum</span><br><span class="line">            sumb += remainder;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            // Every other sum</span><br><span class="line">            if ((remainder * 2) &lt; 10)</span><br><span class="line">            &#123;</span><br><span class="line">                suma += (remainder * 2);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                // If result of digit*2 own 2digit</span><br><span class="line">                // The biggest &lt; 20, so +1</span><br><span class="line">                suma += ((remainder * 2) % 10 + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (Number &lt; 1000 &amp;&amp; Number &gt; 99)</span><br><span class="line">        &#123;</span><br><span class="line">            // mark the 1st &amp; 2nd digits</span><br><span class="line">            remainderx = Number / 10;</span><br><span class="line">        &#125;</span><br><span class="line">        Number /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    int sum = suma + sumb;</span><br><span class="line"></span><br><span class="line">    // Valid or Invalid</span><br><span class="line">    if (sum % 10)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check the last digit 0?</span><br><span class="line">        printf(&quot;INVALID\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (i == 15)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check AMEX?</span><br><span class="line">        if (remainderx == 34 || remainderx == 37)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;AMEX\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;INVALID\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (i == 13)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check VISA?</span><br><span class="line">        if (remainder == 4)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;VISA\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;INVALID\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (i == 16)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check VISA?</span><br><span class="line">        if (remainder == 4)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;VISA\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else if (remainderx == 51 || remainderx == 52 || remainderx == 53 || remainderx == 54 || remainderx == 55)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;MASTERCARD\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;INVALID\n&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;INVALID\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">        // Test by printf</span><br><span class="line">        printf(&quot;Test:\nsum: %i, suma: %i, sumb: %i\n&quot;, sum, suma, sumb);</span><br><span class="line">        printf(&quot;remainder: %i, remainderx: %i, length: %i\n&quot;, remainder, remainderx, i);</span><br><span class="line">    */</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>类型转换</tag>
+        <tag>CS50x 2022 pset1</tag>
+        <tag>casting</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50-Pset2-Caesar</title>
+    <url>/2022/11/16/CS50-Pset2-Caesar/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/2/caesar/#caesar"><strong>Clickhere</strong></a><br><br>概述：用操作者规定的密钥加密其输入的文本，并输出加密后的文本。</p>
+<span id="more"></span> 
+
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><ol>
+<li>Get Key：检测<code>command-line</code>键入内容是否符合的要求，并通过<code>printf</code>对应的<code>argv[ ]</code>来验证。要求：键入的<code>key</code>只有一个；键入的<code>key</code>是否为数字。</li>
+<li>Get Plaintext: 提示输入明文，并获得对应的<code>string</code>。</li>
+<li>Encipher: 根据<code>key</code>加密。</li>
+<li>Print Ciphertext: 输出暗文。</li>
+</ol>
+<p>P.S.<br><br>根据字符数组的定义，可以了解到字符数组的最后一位是<code>(null)</code>，所以直接检测<code>argv[2]</code>即可。<br><br>在<code>command-line</code>的<code>key</code>data-type是<code>string</code>，因此需要对其中的每一位<code>char</code>进行判断：是否为数字。<br><br>加密过程大致为：把明文的每一个’char’对应的<code>ASCII</code>码转换成对应的<code>alphabetical index</code>，根据密钥加密后再把新的<code>alphabetical index</code>转换回<code>ASCII</code>码。<br></p>
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="CS50：int-main-int-argc-string-argv"><a href="#CS50：int-main-int-argc-string-argv" class="headerlink" title="CS50：int main(int argc, string argv[]);"></a><strong>CS50：<code>int main(int argc, string argv[]);</code></strong></h2><h3 id="int-argc"><a href="#int-argc" class="headerlink" title="int argc"></a><strong><code>int argc</code></strong></h3><p>对应在<code>command-line</code>键入的字符个数。<br><br><strong>注意：键入的<code>1024</code>之类的其实是一个<code>string</code>。</strong></p>
+<h3 id="string-argv"><a href="#string-argv" class="headerlink" title="string argv[]"></a><strong><code>string argv[]</code></strong></h3><p>对应在<code>command-line</code>键入的每一个字符。<br><br><strong>注意：<code>argv[0]</code>是键入的<code>./filename</code>。</strong></p>
+<h2 id="更多的函数使用"><a href="#更多的函数使用" class="headerlink" title="更多的函数使用"></a><strong>更多的函数使用</strong></h2><p>以下按照思路步骤列举：</p>
+<h3 id="Get-Key"><a href="#Get-Key" class="headerlink" title="Get Key"></a><strong>Get Key</strong></h3><p><code>&lt;ctype.h&gt;</code><br><br><code>isdigit(int n)</code> - check whether a character is a digit<br></p>
+<p><code>stdlib.h</code><br><br><code>atoi( )</code> - convert a <code>string</code> to an <code>int</code><br></p>
+<h3 id="Encipher"><a href="#Encipher" class="headerlink" title="Encipher"></a><strong>Encipher</strong></h3><p><code>&lt;ctype.h&gt;</code><br><br><code>isupper</code> - check whether a character is uppercase<br><br><code>islower</code> - check whether a character is lowercase<br></p>
+<h2 id="加深对string，array以及char的理解"><a href="#加深对string，array以及char的理解" class="headerlink" title="加深对string，array以及char的理解"></a><strong>加深对<code>string</code>，<code>array</code>以及<code>char</code>的理解</strong></h2><p>详细见下一章 <strong>问题合集</strong> 里的解释。<br></p>
+<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="对string，array以及char的理解"><a href="#对string，array以及char的理解" class="headerlink" title="对string，array以及char的理解"></a>对<code>string</code>，<code>array</code>以及<code>char</code>的理解</h2><p>错误地理解<code>string</code>，<code>array</code>以及<code>char</code>导致了下面的问题：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">caesar.c:11:13: error: cast to smaller integer type &#x27;int&#x27; from &#x27;string&#x27; (aka &#x27;char *&#x27;) [-Werror,-Wpointer-to-int-cast]</span><br><span class="line">    int x = (int) argv[1];</span><br><span class="line">            ^~~~~~~~~~~~~</span><br></pre></td></tr></table></figure>
+<p>网络检索解决方法的时候看到论坛一老哥类似的求助：<a href="https://stackoverflow.com/questions/73711729/i-get-the-error-cast-to-smaller-integer-type-int-from-string-aka-char">I get the error: “cast to smaller integer type ‘int’ from ‘string’ (aka ‘char *’)”</a><br></p>
+<p>关于对<code>string</code>，<code>array</code>以及<code>char</code>的理解更新为：<br><br>多个<code>char</code>的集合<code>chars</code>就是<code>string</code>，某种程度上<code>string</code>也是放<code>char</code>数据的<code>array</code>。简而言之： <strong>用来存放字符数据的数组是字符数组。</strong><br></p>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">bool only_digit(string s);</span><br><span class="line">char rotate(char c, int n);</span><br><span class="line"></span><br><span class="line">int main(int argc, string argv[])</span><br><span class="line">&#123;</span><br><span class="line">    // Check command-line just 1</span><br><span class="line">    // Every char in argv[1] should be a digit</span><br><span class="line">    if (argv[2] != 0 || only_digit(argv[1]) == false)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Usage: ./caesar key\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Convert argv[1] to key</span><br><span class="line">    int k = atoi(argv[1]);</span><br><span class="line"></span><br><span class="line">    // Prompt &quot;plaintext: &quot;</span><br><span class="line">    string p = get_string(&quot;plaintext: &quot;);</span><br><span class="line">    printf(&quot;ciphertext: &quot;);</span><br><span class="line">    for (int i = 0, n = strlen(p); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        char c = rotate(p[i], k);</span><br><span class="line">        printf(&quot;%c&quot;, c);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;%s, %s, %s\n&quot;, argv[0], argv[1], argv[2]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">char rotate(char c, int n)</span><br><span class="line">&#123;</span><br><span class="line">    char a;</span><br><span class="line">    if (isupper(c))</span><br><span class="line">    &#123;</span><br><span class="line">        a = (c - 65 + n) % 26 + 65;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (islower(c))</span><br><span class="line">    &#123;</span><br><span class="line">        a = (c - 97 + n) % 26 + 97;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        a = c;</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool only_digit(string s)</span><br><span class="line">&#123;</span><br><span class="line">    // Every char in argv[1] should be a digit</span><br><span class="line">    int a = 0;</span><br><span class="line">    for (int i = 0, n = strlen(s); i &lt; n; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isdigit(s[i]) == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            a ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (a != 0)</span><br><span class="line">    &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 pset2</tag>
+        <tag>字符数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50-Pset2-Readability</title>
+    <url>/2022/11/15/CS50-Pset2-Readability/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/2/readability/#readability"><strong>Clickhere</strong></a><br><br>概述：根据一段文本来判断该文本对应的阅读水平。<br></p>
+<p>其中用到公式：<br><br>index &#x3D; 0.0588 * L - 0.296 * S - 15.8<br></p>
+<span id="more"></span> 
+
+<p>计算其中的L(letters per 100 words)，S(sentences per 100 words)以及w(words)，代入公式求出index。<br></p>
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a><strong>Function</strong></h2><p>在该问题中将求 <strong>letters</strong> , <strong>sentences</strong> 以及 <strong>words</strong> 用单独的 <strong>function</strong> 表示。<br></p>
+<h3 id="1-Function-Declarations"><a href="#1-Function-Declarations" class="headerlink" title="1 Function Declarations"></a><strong>1 Function Declarations</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">return-type name(argument-list);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Function-Definitions"><a href="#2-Function-Definitions" class="headerlink" title="2 Function Definitions"></a><strong>2 Function Definitions</strong><br></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">return-type name(argument-list)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Function-Calls"><a href="#3-Function-Calls" class="headerlink" title="3 Function Calls"></a><strong>3 Function Calls</strong><br></h3><h3 id="4-Function-Miscellany"><a href="#4-Function-Miscellany" class="headerlink" title="4 Function Miscellany"></a><strong>4 Function Miscellany</strong><br></h3><h2 id="Rounded-to-The-Nearest-Integer-四舍五入"><a href="#Rounded-to-The-Nearest-Integer-四舍五入" class="headerlink" title="Rounded to The Nearest Integer (四舍五入)"></a><strong>Rounded to The Nearest Integer</strong> (四舍五入)</h2><p>根据数据的精度，选择在原计算结果上<code>+ 0.5</code>, <code>+ 0.05</code>以此类推，本题目中如下展示：<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">float g = (0.0588 * l - 0.296 * s) * 100 / w - 15.8;</span><br><span class="line">int index = 0.5 + g;</span><br></pre></td></tr></table></figure>
+
+<h2 id="String-is-Array"><a href="#String-is-Array" class="headerlink" title="String is Array"></a><strong>String is Array</strong></h2><p>本题目中依旧用到了和 <strong>Lab 2</strong> 一样的部分，通过判断比较字符串里的每一个元素，以达到目的。<br></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="计算顺序的改变导致不同结果"><a href="#计算顺序的改变导致不同结果" class="headerlink" title="计算顺序的改变导致不同结果"></a>计算顺序的改变导致不同结果</h2><p>起初在<code>index</code>计算结果的基础上<code>+ 0.5</code>，即</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int index = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br></pre></td></tr></table></figure>
+
+<p>的确能够使原来的计算结果<code>4.5557</code>，<code>int index = 4</code>，达到预期结果<code>Grade 5</code> 。<br></p>
+<p>但使用<code>check50</code>检查的时候发现有一种情况不合格：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:( handles single sentence with multiple words</span><br><span class="line">    expected &quot;Grade 7\n&quot;, not &quot;Grade 8\n&quot;</span><br></pre></td></tr></table></figure>
+
+<p>以下为对应测试的文本(Grade 7)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">In my younger and more vulnerable years my father gave me some advice that I&#x27;ve been turning over in my mind ever since.(Grade 7)</span><br><span class="line">words: 23</span><br><span class="line">letters: 96</span><br><span class="line">sentences: 1</span><br><span class="line">Grade 8</span><br></pre></td></tr></table></figure>
+
+<p>起初认为是四舍五入的精度问题，于是将式子中的<code>0.5</code>更改为<code>0.05</code>甚至<code>0.005</code>，不仅之前的错误未能修改，还出现了更多的”文本等级不符合应有的等级”情况。<br></p>
+<p>经过检查，发现是运算顺序的不一致导致了不同的结果。以下使测试代码及输出结果：<br><br><strong>测试代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">float a = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br><span class="line">float b = 0.5 + 0.0588 * l * 100 / w - 0.296 * s * 100 / w - 15.8;</span><br><span class="line"></span><br><span class="line">int c = 0.5 + 0.0588 * (l * 100 / w) - 0.296 * (s * 100 / w) - 15.8;</span><br><span class="line">int d = 0.5 + 0.0588 * l * 100 / w - 0.296 * s * 100 / w - 15.8;</span><br></pre></td></tr></table></figure>
+
+<p><strong>输出结果</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a: 8.035600, b: 7.955652, c: 8, d:7</span><br></pre></td></tr></table></figure>
+
+<p>于是根据测试结果将对应部分修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int index = 0.5 + (0.0588 * l - 0.296 * s) * 100 / w - 15.8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="for循环的"><a href="#for循环的" class="headerlink" title="for循环的{}"></a>for循环的{}</h2><p>初始版本的 <strong>for循环</strong> 漏掉<code>&#123;&#125;</code>，但程序依然通过编译，且通过了<code>check50</code>的测试，直到使用<code>style50</code>才发现了这个错误。<br></p>
+<p><strong>错误版本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>猜测是因为只有 <strong>一个</strong> if语句，所以编译时默认该if语句是在for循环里的，为了验证猜测正确与否，随后增加一个语句，修改完之后如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    if (text[i] == &#x27; &#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        spaces++;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;l: %i&quot;, letters);</span><br></pre></td></tr></table></figure>
+
+<p>这样就无法通过编译，出现如下报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">readability.c:7:9: error: misleading indentation; statement is not part of the previous &#x27;for&#x27; [-Werror,-Wmisleading-indentation]</span><br><span class="line">        printf(&quot;l: %i&quot;, letters);</span><br><span class="line">        ^</span><br><span class="line">readability.c:1:5: note: previous statement is here</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    ^</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，我将if语句部分取消缩进，修改为下述形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line"></span><br><span class="line">if (isupper(text[i]) || islower(text[i]))</span><br><span class="line">&#123;</span><br><span class="line">    letters++;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;l: %i&quot;, letters);</span><br></pre></td></tr></table></figure>
+<p>却意外发现能通过编译，且结果依然正确。<br></p>
+<p>按照测试结果来看：<br></p>
+<ol>
+<li>如果使用for循环却忘记用<code>&#123;&#125;</code>框住循环的内容，会默认随后第一句为循环内容，随后的第二句就不在循环内了。</li>
+<li>如果后面循环内容都缩进1个<code>Tab</code>，则会在编译时出现报错。<br></li>
+</ol>
+<p>具体原因我也不太懂，暂时没能在中文网络上检索到相关信息，感觉像是游戏里的精英怪保护机制一样，保护粗心的人忘记在for循环后面加<code>&#123;&#125;</code>，神奇！或许学到以后就懂了？</p>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">int count_letters(string text);</span><br><span class="line">int count_words(string text);</span><br><span class="line">int count_sentences(string text);</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    // Prompt user to input</span><br><span class="line">    string text = get_string(&quot;Text: &quot;);</span><br><span class="line"></span><br><span class="line">    // get the l, s and w</span><br><span class="line">    // index = 0.0588 * L - 0.296 * S - 15.8</span><br><span class="line">    int w = count_words(text);</span><br><span class="line">    int l = count_letters(text);</span><br><span class="line">    int s = count_sentences(text);</span><br><span class="line"></span><br><span class="line">    // 0.5 is used to round the result</span><br><span class="line">    int index = 0.5 + (0.0588 * l - 0.296 * s) * 100 / w  - 15.8;</span><br><span class="line"></span><br><span class="line">    // Grade</span><br><span class="line">    if (index &lt; 1)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Before Grade 1\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (index &gt; 16)</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Grade 16+\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;Grade %i\n&quot;, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_letters(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count letters</span><br><span class="line">    int letters = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(text[i]) || islower(text[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            letters++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;letters: %i\n&quot;, letters);</span><br><span class="line">    return letters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_words(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count words</span><br><span class="line">    int words;</span><br><span class="line">    int spaces = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (text[i] == &#x27; &#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            spaces++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    words = spaces + 1;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;words: %i\n&quot;, words);</span><br><span class="line">    return words;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int count_sentences(string text)</span><br><span class="line">&#123;</span><br><span class="line">    // Count sentences</span><br><span class="line">    int sentences = 0;</span><br><span class="line">    for (int i = 0, n = strlen(text); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (text[i] == &#x27;.&#x27; || text[i] == &#x27;!&#x27; || text[i] == &#x27;?&#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            sentences++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // Test</span><br><span class="line">    // printf(&quot;sentences: %i\n&quot;, sentences);</span><br><span class="line">    return sentences;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a><strong>小岛拜访</strong></h1><p><a href="https://manual.cs50.io/">CS50 Manual Pages</a>：查询不同的库函数及作用。<br></p>
+]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 pset2</tag>
+        <tag>for循环</tag>
+        <tag>四舍五入</tag>
+        <tag>运算顺序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FAQ submit50</title>
+    <url>/2022/11/07/CS50L1%20FAQ%20submit50/</url>
+    <content><![CDATA[<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Invalid slug </span><br><span class="line">Submission cancelled.</span><br></pre></td></tr></table></figure>
+<span id="more"></span> 
+
+<p>起初跟着官网教程复制输入下述指令后，出现 <strong>Submission cancelled.</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">submit50 cs50/problem/2022x/hello</span><br></pre></td></tr></table></figure>
+<p>猜想是不是当前位置输入错误，便输入 <code>pwd</code> 查询当前位置，并复制当前位置重新输入，结果仍然无法上传。<br></p>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>后来在无数次尝试与网络检索解决办法的时候，在 <strong>CS50 StackExchange</strong> 论坛的帖子 <a href="https://cs50.stackexchange.com/questions/33125/pset5-submit50-slug">pset5 submit50 slug</a> 找到了问题所在。<br></p>
+<p>帖子的评论区有如下对话：<br></p>
+<blockquote>
+<p><strong>Blauelf</strong> : Have you completed the steps on <a href="cs50.me/cs50x">cs50.me&#x2F;cs50x</a> to add you to the new submission process? Does it show your scores? Have you accepted the invitation to <a href="github.com/me50/username">github.com&#x2F;me50&#x2F;username</a>?</p>
+</blockquote>
+<blockquote>
+<p><strong>Rudolf Fonseca</strong> : I accessed cs50.me and I was requested to enroll CS50 course. So I did it and now everything is working normally. Have a new term for 2019 started recently? </p>
+</blockquote>
+<p>注意，在两人的讨论中提到了：<br></p>
+<blockquote>
+<p><strong>add</strong> you to the new submission process</p>
+</blockquote>
+<blockquote>
+<p>Have you <strong>accepted the invitation</strong>?</p>
+</blockquote>
+<blockquote>
+<p>I <strong>accessed</strong> cs50.me and I was requested to <strong>enroll</strong> CS50 course.</p>
+</blockquote>
+<p>也就是说：<br></p>
+<p>使用submit50提交作业时，除了需要完成 <code>ssh</code> 的一系列操作，还需要：<br></p>
+<ol>
+<li>接受 <strong>课程邀请 invitation</strong> 。</li>
+<li>关联 <strong>github</strong> 与 <strong>edX</strong> 的账号。</li>
+<li>在 <strong>github</strong> 加入 <strong>CS50X 2022</strong> 的课程。</li>
+</ol>
+<p>而这些 <strong>关联</strong> 与 <strong>加入课程</strong> 都是在官网教程中的某一步时有操作过的，但是当时网络状况堪忧或者其他原因，导致 <strong>关联</strong> 步骤未能完成。<br></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li>在edX的 <a href="https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home">课程 | CS50</a> 页面顶端寻找授权链接，接受邀请并关联授权你的 <strong>github</strong> 账号。</li>
+<li>在 <strong>Problemset</strong> 进入 <strong>VS Code</strong> 时会有一个 <strong>Log in via Github</strong> 的按钮让你关联。</li>
+<li>在 <a href="https://submit.cs50.io/courses">github课程界面</a> 加入课程。<br></li>
+</ol>
+<p>在完成上述操作之后回到VS Code的终端上传作业就能成功哩！</p>
+<p>P.S. 输入<code>submit50  cs50/problem/2022x/hello</code> 后会询问是否上传它查找的那个文件，确认即回答 <strong>yes</strong> ，需要再检查一下就回答 <strong>no</strong> 。</p>
+]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 L1</tag>
+        <tag>submit50</tag>
       </tags>
   </entry>
 </search>
