@@ -181,20 +181,86 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/01/0%20hello-world/</url>
-    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
+    <title>CS50-Lab3-Sort</title>
+    <url>/2022/11/23/CS50-Lab3/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/labs/3/"><strong>Clickhere</strong></a><br><br>概述：想办法猜出Sort1 Sort2 Sort3分别对应哪种算法。</p>
+<span id="more"></span> 
+
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h2><ul>
+<li><strong>Worst-case senario</strong> 对应上限，即 <strong>upper bound</strong></li>
+<li><strong>Best-case senario</strong> 对应下限，即 <strong>lower bound</strong></li>
+<li><strong>Θ</strong>: when upper bound is same as lower bound</li>
+</ul>
+<h2 id="Algorithms"><a href="#Algorithms" class="headerlink" title="Algorithms"></a>Algorithms</h2><h3 id="Linear-Search"><a href="#Linear-Search" class="headerlink" title="Linear Search"></a>Linear Search</h3><p>最质朴的依次Search。<br><br>Worst-case senario: O(n)<br><br>Best-case senario:  Ω(1)</p>
+<h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><p>divide:(<strong>sorted array</strong>)</p>
+<ul>
+<li>Sort the array</li>
+<li>Repeat until the (sub)array is of size 0:<ul>
+<li>middle point</li>
+<li>if target is at the middle point, stop</li>
+<li>otherwise, if target is less than what’s at the middle, repeat and change end point to be the left of the middle</li>
+<li>otherwise, if target is more than what’s at the middle, repeat and change start point to be the right of the middle<br>Worst-case senario: O(log n)<br><br>Best-case senario:  Ω(1)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h3><p>Compare the adjacent pair and swap. Repeat until the swap-counter is 0.<br><br>Worst-case senario: O(n^2)<br><br>Best-case senario:  Ω(n)</p>
+<h3 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h3><p>Find the smallest and add it to the end of the sorted list. Repeat until no unsorted elements remain<br><br>Worst-case senario: O(n^2)<br><br>Best-case senario:  Ω(n^2)</p>
+<h3 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h3><ul>
+<li>Sort the left half (n &gt; 1)</li>
+<li>Sort the right half (n &gt; 1)</li>
+<li>Merge two halves<br>Worst-case senario: O(n log n)<br><br>Best-case senario:  Ω(n log n)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th><strong>Name</strong></th>
+<th><strong>Upper Bound</strong></th>
+<th><strong>Lower Bound</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Selection Sort</td>
+<td>O(n^2)</td>
+<td>Ω(n^2)</td>
+</tr>
+<tr>
+<td>Bubble Sort</td>
+<td>O(n^2)</td>
+<td>Ω(n)</td>
+</tr>
+<tr>
+<td>Merge Sort</td>
+<td>O(n log n)</td>
+<td>Ω(n log n)</td>
+</tr>
+<tr>
+<td>Linear Search</td>
+<td>O(n)</td>
+<td>Ω(1)</td>
+</tr>
+<tr>
+<td>Binary Search</td>
+<td>O(log n)</td>
+<td>Ω(1)</td>
+</tr>
+</tbody></table>
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>题目给出了几组数，分别是随机的(random)，倒序的(reversed)，排序好了的(sorted)。<br><br>通过不同算法的运作机制及算法复杂度可以知道，对于排序好了的数，<strong>Bubble Sort</strong> 一定是最快的；对于随机的数，<strong>Merge Sort</strong> 最可能是最快的。因此可以首先通过对<code>sorted.txt</code>排序来确定 __Bubble Sort__，然后通过对<code>random.txt</code>排序来确定 __Merge Sort__，最后剩下的自然而然就是 __Selection Sort__。</p>
+<h1 id="小岛拜访"><a href="#小岛拜访" class="headerlink" title="小岛拜访"></a>小岛拜访</h1><p>在看算法复杂度的时候有一点不太理解<code>Binary Search</code>的算法复杂度是<code>log n</code>而不是<code>log 2^n</code>，然后在这一篇里找到了解释：<a href="https://blog.csdn.net/e891377/article/details/109117300">算法的时间复杂度分析之O(logn)、O(nlogn)</a></p>
 ]]></content>
       <categories>
-        <category>🐟</category>
+        <category>CS50x 2022</category>
       </categories>
       <tags>
-        <tag>hello_world</tag>
-        <tag>Guten_Tag</tag>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 Lab3</tag>
+        <tag>Algorithms</tag>
+        <tag>Bubble Sort</tag>
+        <tag>Selection Sort</tag>
+        <tag>Merge Sort</tag>
       </tags>
   </entry>
   <entry>
-    <title>CS50-Lab2</title>
+    <title>CS50-Lab2-Scrabble</title>
     <url>/2022/11/15/CS50-Lab2/</url>
     <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/labs/2/#lab-2-scrabble"><strong>Clickhere</strong></a><br><br>概述：赋予每个字母不同的值，比较不同单词值的大小。</p>
 <span id="more"></span> 
@@ -222,6 +288,19 @@
         <tag>CS50x 2022</tag>
         <tag>CS50x 2022 Lab2</tag>
         <tag>类型转换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/01/0%20hello-world/</url>
+    <content><![CDATA[<p>Welcome to 🐟. This is my first post. </p>
+]]></content>
+      <categories>
+        <category>🐟</category>
+      </categories>
+      <tags>
+        <tag>hello_world</tag>
+        <tag>Guten_Tag</tag>
       </tags>
   </entry>
   <entry>
@@ -285,24 +364,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CS50 PSet1: Cash</title>
-    <url>/2022/11/10/CS50-Pset1-Cash/</url>
-    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/cash/"><strong>Clickhere</strong></a><br><br>概述：把一定金额用最少的硬币来表示。</p>
-<span id="more"></span> 
-
-<h1 id="学到收获"><a href="#学到收获" class="headerlink" title="学到收获"></a>学到收获</h1><h2 id="Greedy-Algorithms"><a href="#Greedy-Algorithms" class="headerlink" title="Greedy Algorithms"></a><strong>Greedy Algorithms</strong></h2><p>详细见题目要求。<br></p>
-<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="Side-Effect"><a href="#Side-Effect" class="headerlink" title="Side Effect"></a><strong>Side Effect</strong></h2><p><strong>推荐阅读的链接:</strong> <br><br><a href="https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect">What is a “side effect?”</a><br></p>
-<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int get_cents(void);</span><br><span class="line">int calculate_quarters(int cents);</span><br><span class="line">int calculate_dimes(int cents);</span><br><span class="line">int calculate_nickels(int cents);</span><br><span class="line">int calculate_pennies(int cents);</span><br><span class="line"></span><br><span class="line">int main(void)z</span><br><span class="line">&#123;</span><br><span class="line">    // Ask how many cents the customer is owed</span><br><span class="line">    int cents = get_cents();</span><br><span class="line"></span><br><span class="line">    // Calculate the number of quarters to give the customer</span><br><span class="line">    int quarters = calculate_quarters(cents);</span><br><span class="line">    cents = cents - quarters * 25;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of dimes to give the customer</span><br><span class="line">    int dimes = calculate_dimes(cents);</span><br><span class="line">    cents = cents - dimes * 10;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of nickels to give the customer</span><br><span class="line">    int nickels = calculate_nickels(cents);</span><br><span class="line">    cents = cents - nickels * 5;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of pennies to give the customer</span><br><span class="line">    int pennies = calculate_pennies(cents);</span><br><span class="line">    cents = cents - pennies * 1;</span><br><span class="line"></span><br><span class="line">    // Sum coins</span><br><span class="line">    int coins = quarters + dimes + nickels + pennies;</span><br><span class="line"></span><br><span class="line">    // Print total number of coins to give the customer</span><br><span class="line">    printf(&quot;%i\n&quot;, coins);</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">    // Test cents</span><br><span class="line">    printf(&quot;%i\n&quot;, cents);</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int get_cents(void)</span><br><span class="line">&#123;</span><br><span class="line">    int cents;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        cents = get_int(&quot;Change owed: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (cents &lt; 0);</span><br><span class="line">    return cents;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_quarters(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int quarters = cents / 25;</span><br><span class="line">    return quarters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_dimes(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int dimes = cents / 10;</span><br><span class="line">    return dimes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_nickels(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int nickels =  cents / 5;</span><br><span class="line">    return nickels;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_pennies(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int pennies = cents / 1;</span><br><span class="line">    return pennies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 pset1</tag>
-        <tag>Side Effect</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CS50-Pset1-Credit</title>
     <url>/2022/11/10/CS50-Pset1-Credit/</url>
     <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/credit/"><strong>Clickhere</strong></a><br><br>概述：验证银行卡卡号是否有效，并判断对应的银行。</p>
@@ -331,6 +392,24 @@
         <tag>类型转换</tag>
         <tag>CS50x 2022 pset1</tag>
         <tag>casting</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS50 PSet1: Cash</title>
+    <url>/2022/11/10/CS50-Pset1-Cash/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/1/cash/"><strong>Clickhere</strong></a><br><br>概述：把一定金额用最少的硬币来表示。</p>
+<span id="more"></span> 
+
+<h1 id="学到收获"><a href="#学到收获" class="headerlink" title="学到收获"></a>学到收获</h1><h2 id="Greedy-Algorithms"><a href="#Greedy-Algorithms" class="headerlink" title="Greedy Algorithms"></a><strong>Greedy Algorithms</strong></h2><p>详细见题目要求。<br></p>
+<h1 id="问题合集"><a href="#问题合集" class="headerlink" title="问题合集"></a>问题合集</h1><h2 id="Side-Effect"><a href="#Side-Effect" class="headerlink" title="Side Effect"></a><strong>Side Effect</strong></h2><p><strong>推荐阅读的链接:</strong> <br><br><a href="https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect">What is a “side effect?”</a><br></p>
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int get_cents(void);</span><br><span class="line">int calculate_quarters(int cents);</span><br><span class="line">int calculate_dimes(int cents);</span><br><span class="line">int calculate_nickels(int cents);</span><br><span class="line">int calculate_pennies(int cents);</span><br><span class="line"></span><br><span class="line">int main(void)z</span><br><span class="line">&#123;</span><br><span class="line">    // Ask how many cents the customer is owed</span><br><span class="line">    int cents = get_cents();</span><br><span class="line"></span><br><span class="line">    // Calculate the number of quarters to give the customer</span><br><span class="line">    int quarters = calculate_quarters(cents);</span><br><span class="line">    cents = cents - quarters * 25;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of dimes to give the customer</span><br><span class="line">    int dimes = calculate_dimes(cents);</span><br><span class="line">    cents = cents - dimes * 10;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of nickels to give the customer</span><br><span class="line">    int nickels = calculate_nickels(cents);</span><br><span class="line">    cents = cents - nickels * 5;</span><br><span class="line"></span><br><span class="line">    // Calculate the number of pennies to give the customer</span><br><span class="line">    int pennies = calculate_pennies(cents);</span><br><span class="line">    cents = cents - pennies * 1;</span><br><span class="line"></span><br><span class="line">    // Sum coins</span><br><span class="line">    int coins = quarters + dimes + nickels + pennies;</span><br><span class="line"></span><br><span class="line">    // Print total number of coins to give the customer</span><br><span class="line">    printf(&quot;%i\n&quot;, coins);</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">    // Test cents</span><br><span class="line">    printf(&quot;%i\n&quot;, cents);</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int get_cents(void)</span><br><span class="line">&#123;</span><br><span class="line">    int cents;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">        cents = get_int(&quot;Change owed: &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    while (cents &lt; 0);</span><br><span class="line">    return cents;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_quarters(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int quarters = cents / 25;</span><br><span class="line">    return quarters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_dimes(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int dimes = cents / 10;</span><br><span class="line">    return dimes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_nickels(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int nickels =  cents / 5;</span><br><span class="line">    return nickels;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int calculate_pennies(int cents)</span><br><span class="line">&#123;</span><br><span class="line">    int pennies = cents / 1;</span><br><span class="line">    return pennies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 pset1</tag>
+        <tag>Side Effect</tag>
       </tags>
   </entry>
   <entry>
@@ -445,6 +524,38 @@
       </tags>
   </entry>
   <entry>
+    <title>CS50-Pset2-Substitution</title>
+    <url>/2022/11/17/CS50-Pset2-Substitution/</url>
+    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/2/substitution/#substitution"><strong>Clickhere</strong></a><br><br>概述：以特定顺序的字母密钥加密明文中的字母。<br></p>
+<span id="more"></span> 
+
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>大体与<a href="https://unbreakableyu.github.io/2022/11/16/CS50-Pset2-Caesar/#more">CS50-Pset2-Caesar</a>的思路相似：<br></p>
+<blockquote>
+<p>Get key -&gt; Validate key -&gt; Get Plaintext -&gt; Encipher -&gt; Print Ciphertext</p>
+</blockquote>
+<h2 id="Get-key重点"><a href="#Get-key重点" class="headerlink" title="Get key重点"></a>Get key重点</h2><p>在<code>Get key</code>步骤中细化了制作<code>key-index</code>的过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Get key and key-index: argv[1][i] -&gt; k[i] and encipher</span><br><span class="line">int k[26];</span><br><span class="line">for (int i = 0; i &lt; 26; i++)</span><br><span class="line">&#123;</span><br><span class="line">    if (isupper(argv[1][i]))</span><br><span class="line">    &#123;</span><br><span class="line">        k[i] = (int)argv[1][i] - 65;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        k[i] = (int)argv[1][i] - 97;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Validate-key重点"><a href="#Validate-key重点" class="headerlink" title="Validate key重点"></a>Validate key重点</h2><p>检查是否有重复的字母，此处最开始设想依次比较的方式，但直觉太麻烦且会把本就是糨糊状态的大脑弄得更混沌，于是想着使用<a href="https://unbreakableyu.github.io/2022/11/15/CS50-Lab2/">Scrabble</a>里的方法：<br><br><strong>给每一个字母赋予一个特殊的值(刁钻地选了一些质数)，计算总和，如果总和不等于某个确定的值，就说明其中有重复。</strong></p>
+<h2 id="Encipher重点"><a href="#Encipher重点" class="headerlink" title="Encipher重点"></a>Encipher重点</h2><p>其中<code>Encipher</code>的思路：<code>ASCII</code> -&gt; <code>alpha-index</code> maps to <code>key-index</code> -&gt; <code>ASCII</code></p>
+<blockquote>
+<p>plaintext[i] isalpha?<br>N -&gt; ciphertext[i] &#x3D; plaintext[i]<br>Y -&gt; get <code>alpha-index</code><br>      isupper? Y -&gt; <code>key-index</code> + 65; N -&gt; <code>key-index</code> + 97</p>
+</blockquote>
+<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="对数组的理解"><a href="#对数组的理解" class="headerlink" title="对数组的理解"></a>对数组的理解</h2><p><code>argv[i][j]</code>：第<code>i</code>个字符串，第<code>j</code>个字符。</p>
+<h2 id="隐式类型转化-Implicit-Casting"><a href="#隐式类型转化-Implicit-Casting" class="headerlink" title="隐式类型转化 Implicit Casting"></a>隐式类型转化 Implicit Casting</h2><p>在<code>Encipher</code>步骤中，<code>key-index</code>的数据类型是<code>int</code>，但是在最后的<code>printf</code>中，通过隐式转换将<code>int</code>转换为<code>char</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">printf(&quot;%c&quot;, (k[c] + 97));</span><br></pre></td></tr></table></figure>
+
+<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line"></span><br><span class="line">bool only_alphabet(string s);</span><br><span class="line">int compute_score(string s);</span><br><span class="line">int substitution(char c);</span><br><span class="line"></span><br><span class="line">int POINTS[] = &#123;1, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 51, 53, 57, 59, 61, 67, 71, 73, 79, 83, 87&#125;;</span><br><span class="line"></span><br><span class="line">int main(int argc, string argv[])</span><br><span class="line">&#123;</span><br><span class="line">    // Validate key</span><br><span class="line">    if (argv[2] || argv[1] == 0)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check command-line just 1</span><br><span class="line">        printf(&quot;Usage: ./substitution key\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (only_alphabet(argv[1]) == false)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check whether the key contains digits</span><br><span class="line">        printf(&quot;Key must only contain alphabetic characters.\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (strlen(argv[1]) &lt; 26)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check the length of key</span><br><span class="line">        printf(&quot;Key must contain 26 characters.\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (compute_score(argv[1]) != 1068)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check whether the key contains repeated characters, 1068 is sum of POINTS</span><br><span class="line">        printf(&quot;Key must not contain repeated characters&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Get key and key-index: argv[1][i] -&gt; k[i] and encipher</span><br><span class="line">    int k[26];</span><br><span class="line">    for (int i = 0; i &lt; 26; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(argv[1][i]))</span><br><span class="line">        &#123;</span><br><span class="line">            k[i] = (int)argv[1][i] - 65;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            k[i] = (int)argv[1][i] - 97;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Get plaintext</span><br><span class="line">    string p = get_string(&quot;plaintext: &quot;);</span><br><span class="line"></span><br><span class="line">    // Print ciphertext</span><br><span class="line">    printf(&quot;ciphertext: &quot;);</span><br><span class="line">    for (int i = 0, n = strlen(p); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isalpha(p[i]) == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;%c&quot;, p[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        else if (isupper(p[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // Convert alphabet-index and maps to key-index</span><br><span class="line">            int c = substitution(p[i]);</span><br><span class="line">            printf(&quot;%c&quot;, (k[c] + 65));</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            // Convert alphabet-index and maps to key-index</span><br><span class="line">            int c = substitution(p[i]);</span><br><span class="line">            printf(&quot;%c&quot;, (k[c] + 97));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int substitution(char c)</span><br><span class="line">&#123;</span><br><span class="line">    // Get the alphabet-index</span><br><span class="line">    int a;</span><br><span class="line">    if (isupper(c))</span><br><span class="line">    &#123;</span><br><span class="line">        a = c - 65;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        a = c - 97;</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool only_alphabet(string s)</span><br><span class="line">&#123;</span><br><span class="line">    // Key only contain alphabet</span><br><span class="line">    int a = 0;</span><br><span class="line">    for (int i = 0, n = strlen(s); i &lt; n; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isalpha(s[i]) == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            // If a digit, an signal</span><br><span class="line">            a ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (a != 0)</span><br><span class="line">    &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int compute_score(string s)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO: Compute and return score for string</span><br><span class="line">    int score = 0;</span><br><span class="line">    int ascii;</span><br><span class="line">    // convert capitalize</span><br><span class="line">    for (int i = 0, n = strlen(s); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(s[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;A&#x27; in ASCII is 65</span><br><span class="line">            ascii = (int) s[i];</span><br><span class="line">            score += POINTS[ascii - 65];</span><br><span class="line">        &#125;</span><br><span class="line">        else if (islower(s[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;a&#x27; in ASCII is 97</span><br><span class="line">            ascii = (int) s[i];</span><br><span class="line">            score += POINTS[ascii - 97];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return score;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>CS50x 2022</category>
+      </categories>
+      <tags>
+        <tag>CS50x 2022</tag>
+        <tag>CS50x 2022 pset2</tag>
+        <tag>implicit casting</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FAQ submit50</title>
     <url>/2022/11/07/CS50L1%20FAQ%20submit50/</url>
     <content><![CDATA[<h2 id="情况描述"><a href="#情况描述" class="headerlink" title="情况描述"></a>情况描述</h2><p>使用submit50上传 <strong>pset1</strong> <strong>hello</strong> 时，显示如下提示：</p>
@@ -495,38 +606,6 @@
         <tag>CS50x 2022</tag>
         <tag>CS50x 2022 L1</tag>
         <tag>submit50</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS50-Pset2-Substitution</title>
-    <url>/2022/11/17/CS50-Pset2-Substitution/</url>
-    <content><![CDATA[<h1 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h1><p><a href="https://cs50.harvard.edu/x/2022/psets/2/substitution/#substitution"><strong>Clickhere</strong></a><br><br>概述：以特定顺序的字母密钥加密明文中的字母。<br></p>
-<span id="more"></span> 
-
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>大体与<a href="https://unbreakableyu.github.io/2022/11/16/CS50-Pset2-Caesar/#more">CS50-Pset2-Caesar</a>的思路相似：<br></p>
-<blockquote>
-<p>Get key -&gt; Validate key -&gt; Get Plaintext -&gt; Encipher -&gt; Print Ciphertext</p>
-</blockquote>
-<h2 id="Get-key重点"><a href="#Get-key重点" class="headerlink" title="Get key重点"></a>Get key重点</h2><p>在<code>Get key</code>步骤中细化了制作<code>key-index</code>的过程：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// Get key and key-index: argv[1][i] -&gt; k[i] and encipher</span><br><span class="line">int k[26];</span><br><span class="line">for (int i = 0; i &lt; 26; i++)</span><br><span class="line">&#123;</span><br><span class="line">    if (isupper(argv[1][i]))</span><br><span class="line">    &#123;</span><br><span class="line">        k[i] = (int)argv[1][i] - 65;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        k[i] = (int)argv[1][i] - 97;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Validate-key重点"><a href="#Validate-key重点" class="headerlink" title="Validate key重点"></a>Validate key重点</h2><p>检查是否有重复的字母，此处最开始设想依次比较的方式，但直觉太麻烦且会把本就是糨糊状态的大脑弄得更混沌，于是想着使用<a href="https://unbreakableyu.github.io/2022/11/15/CS50-Lab2/">Scrabble</a>里的方法：<br><br><strong>给每一个字母赋予一个特殊的值(刁钻地选了一些质数)，计算总和，如果总和不等于某个确定的值，就说明其中有重复。</strong></p>
-<h2 id="Encipher重点"><a href="#Encipher重点" class="headerlink" title="Encipher重点"></a>Encipher重点</h2><p>其中<code>Encipher</code>的思路：<code>ASCII</code> -&gt; <code>alpha-index</code> maps to <code>key-index</code> -&gt; <code>ASCII</code></p>
-<blockquote>
-<p>plaintext[i] isalpha?<br>N -&gt; ciphertext[i] &#x3D; plaintext[i]<br>Y -&gt; get <code>alpha-index</code><br>      isupper? Y -&gt; <code>key-index</code> + 65; N -&gt; <code>key-index</code> + 97</p>
-</blockquote>
-<h1 id="学习收获"><a href="#学习收获" class="headerlink" title="学习收获"></a>学习收获</h1><h2 id="对数组的理解"><a href="#对数组的理解" class="headerlink" title="对数组的理解"></a>对数组的理解</h2><p><code>argv[i][j]</code>：第<code>i</code>个字符串，第<code>j</code>个字符。</p>
-<h2 id="隐式类型转化-Implicit-Casting"><a href="#隐式类型转化-Implicit-Casting" class="headerlink" title="隐式类型转化 Implicit Casting"></a>隐式类型转化 Implicit Casting</h2><p>在<code>Encipher</code>步骤中，<code>key-index</code>的数据类型是<code>int</code>，但是在最后的<code>printf</code>中，通过隐式转换将<code>int</code>转换为<code>char</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">printf(&quot;%c&quot;, (k[c] + 97));</span><br></pre></td></tr></table></figure>
-
-<h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;cs50.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;ctype.h&gt;</span><br><span class="line"></span><br><span class="line">bool only_alphabet(string s);</span><br><span class="line">int compute_score(string s);</span><br><span class="line">int substitution(char c);</span><br><span class="line"></span><br><span class="line">int POINTS[] = &#123;1, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 51, 53, 57, 59, 61, 67, 71, 73, 79, 83, 87&#125;;</span><br><span class="line"></span><br><span class="line">int main(int argc, string argv[])</span><br><span class="line">&#123;</span><br><span class="line">    // Validate key</span><br><span class="line">    if (argv[2] || argv[1] == 0)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check command-line just 1</span><br><span class="line">        printf(&quot;Usage: ./substitution key\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (only_alphabet(argv[1]) == false)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check whether the key contains digits</span><br><span class="line">        printf(&quot;Key must only contain alphabetic characters.\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (strlen(argv[1]) &lt; 26)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check the length of key</span><br><span class="line">        printf(&quot;Key must contain 26 characters.\n&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    else if (compute_score(argv[1]) != 1068)</span><br><span class="line">    &#123;</span><br><span class="line">        // Check whether the key contains repeated characters, 1068 is sum of POINTS</span><br><span class="line">        printf(&quot;Key must not contain repeated characters&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Get key and key-index: argv[1][i] -&gt; k[i] and encipher</span><br><span class="line">    int k[26];</span><br><span class="line">    for (int i = 0; i &lt; 26; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(argv[1][i]))</span><br><span class="line">        &#123;</span><br><span class="line">            k[i] = (int)argv[1][i] - 65;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            k[i] = (int)argv[1][i] - 97;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Get plaintext</span><br><span class="line">    string p = get_string(&quot;plaintext: &quot;);</span><br><span class="line"></span><br><span class="line">    // Print ciphertext</span><br><span class="line">    printf(&quot;ciphertext: &quot;);</span><br><span class="line">    for (int i = 0, n = strlen(p); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isalpha(p[i]) == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            printf(&quot;%c&quot;, p[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        else if (isupper(p[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // Convert alphabet-index and maps to key-index</span><br><span class="line">            int c = substitution(p[i]);</span><br><span class="line">            printf(&quot;%c&quot;, (k[c] + 65));</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            // Convert alphabet-index and maps to key-index</span><br><span class="line">            int c = substitution(p[i]);</span><br><span class="line">            printf(&quot;%c&quot;, (k[c] + 97));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int substitution(char c)</span><br><span class="line">&#123;</span><br><span class="line">    // Get the alphabet-index</span><br><span class="line">    int a;</span><br><span class="line">    if (isupper(c))</span><br><span class="line">    &#123;</span><br><span class="line">        a = c - 65;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        a = c - 97;</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool only_alphabet(string s)</span><br><span class="line">&#123;</span><br><span class="line">    // Key only contain alphabet</span><br><span class="line">    int a = 0;</span><br><span class="line">    for (int i = 0, n = strlen(s); i &lt; n; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isalpha(s[i]) == 0)</span><br><span class="line">        &#123;</span><br><span class="line">            // If a digit, an signal</span><br><span class="line">            a ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (a != 0)</span><br><span class="line">    &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int compute_score(string s)</span><br><span class="line">&#123;</span><br><span class="line">    // TODO: Compute and return score for string</span><br><span class="line">    int score = 0;</span><br><span class="line">    int ascii;</span><br><span class="line">    // convert capitalize</span><br><span class="line">    for (int i = 0, n = strlen(s); i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if (isupper(s[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;A&#x27; in ASCII is 65</span><br><span class="line">            ascii = (int) s[i];</span><br><span class="line">            score += POINTS[ascii - 65];</span><br><span class="line">        &#125;</span><br><span class="line">        else if (islower(s[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            // &#x27;a&#x27; in ASCII is 97</span><br><span class="line">            ascii = (int) s[i];</span><br><span class="line">            score += POINTS[ascii - 97];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return score;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CS50x 2022</category>
-      </categories>
-      <tags>
-        <tag>CS50x 2022</tag>
-        <tag>CS50x 2022 pset2</tag>
-        <tag>implicit casting</tag>
       </tags>
   </entry>
 </search>
